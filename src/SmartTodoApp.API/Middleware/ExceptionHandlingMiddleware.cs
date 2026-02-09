@@ -90,9 +90,15 @@ public class ExceptionHandlingMiddleware
         // Add trace ID and correlation ID to Problem Details
         problemDetails.Extensions["traceId"] = context.TraceIdentifier;
 
-        if (context.Request.Headers.TryGetValue("X-Correlation-ID", out var correlationId))
+        // Try to get correlation ID from HttpContext.Items (set by CorrelationIdMiddleware)
+        // Fall back to request headers if not found
+        if (context.Items.TryGetValue("CorrelationId", out var correlationIdFromItems) && correlationIdFromItems is string correlationId)
         {
-            problemDetails.Extensions["correlationId"] = correlationId.ToString();
+            problemDetails.Extensions["correlationId"] = correlationId;
+        }
+        else if (context.Request.Headers.TryGetValue("X-Correlation-ID", out var correlationIdFromHeader))
+        {
+            problemDetails.Extensions["correlationId"] = correlationIdFromHeader.ToString();
         }
 
         response.StatusCode = (int)statusCode;
