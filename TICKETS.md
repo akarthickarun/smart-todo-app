@@ -1,6 +1,6 @@
 # Implementation Tickets (Smart Todo App)
 
-Comprehensive tracking document for all 25 implementation tickets. Each ticket is sequenced with clear dependencies and acceptance criteria.
+Comprehensive tracking document for all 25 implementation tickets. Each ticket is sequenced with clear dependencies and acceptance criteria. GitHub issues are linked below for collaborative tracking.
 
 ---
 
@@ -8,6 +8,7 @@ Comprehensive tracking document for all 25 implementation tickets. Each ticket i
 
 ### #2 - Set up ASP.NET Core 10 projects and dependency injection
 **Status:** ✅ Completed  
+**GitHub Issue:** [akarthickarun/smart-todo-app#2](https://github.com/akarthickarun/smart-todo-app/issues/2)  
 **Dependencies:** None  
 **Estimated:** 1 day
 
@@ -15,18 +16,19 @@ Comprehensive tracking document for all 25 implementation tickets. Each ticket i
 Create the foundational project structure and configure dependency injection for the entire backend.
 
 **Acceptance Criteria:**
-- [ ] Create 5 projects: SmartTodoApp.Domain, SmartTodoApp.Application, SmartTodoApp.Infrastructure, SmartTodoApp.API, SmartTodoApp.Shared.Contracts
-- [ ] Configure Program.cs with MediatR registration
-- [ ] Configure Program.cs with AutoMapper registration
-- [ ] Configure Program.cs with Serilog registration
-- [ ] Configure Program.cs with EF Core SQL Server registration (placeholder)
-- [ ] Verify solution builds successfully
-- [ ] Create xUnit test projects: Tests.Application.UnitTests, Tests.API.IntegrationTests
+- [x] Create 5 projects: SmartTodoApp.Domain, SmartTodoApp.Application, SmartTodoApp.Infrastructure, SmartTodoApp.API, SmartTodoApp.Shared.Contracts
+- [x] Configure Program.cs with MediatR registration
+- [x] Configure Program.cs with AutoMapper registration
+- [x] Configure Program.cs with Serilog registration
+- [x] Configure Program.cs with EF Core SQL Server registration (placeholder)
+- [x] Verify solution builds successfully
+- [x] Create xUnit test projects: Tests.Application.UnitTests, Tests.API.IntegrationTests
 
 ---
 
 ### #3 - Implement base middleware and error handling
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#3](https://github.com/akarthickarun/smart-todo-app/issues/3)  
 **Dependencies:** #2  
 **Estimated:** 1 day
 
@@ -47,6 +49,7 @@ Add core middleware for request correlation tracking, exception handling, and st
 
 ### #4 - Create Todo entity in Domain layer
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#4](https://github.com/akarthickarun/smart-todo-app/issues/4)  
 **Dependencies:** None  
 **Estimated:** 0.5 day
 
@@ -66,6 +69,7 @@ Define the core Todo entity with all business logic and factory methods.
 
 ### #5 - Create DTOs in Shared.Contracts
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#5](https://github.com/akarthickarun/smart-todo-app/issues/5)  
 **Dependencies:** #4  
 **Estimated:** 0.5 day
 
@@ -84,6 +88,7 @@ Define data transfer objects for API contracts and frontend consumption.
 
 ### #6 - Set up EF Core DbContext and configuration
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#6](https://github.com/akarthickarun/smart-todo-app/issues/6)  
 **Dependencies:** #4, #5  
 **Estimated:** 1 day
 
@@ -104,6 +109,7 @@ Create EF Core DbContext and configure TodoItem entity with Fluent API.
 
 ### #7 - Create and apply initial database migration
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#7](https://github.com/akarthickarun/smart-todo-app/issues/7)  
 **Dependencies:** #6  
 **Estimated:** 0.5 day
 
@@ -122,6 +128,7 @@ Generate and apply the first EF Core migration to create the TodoItems table.
 
 ### #8 - Create AutoMapper MappingProfile
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#8](https://github.com/akarthickarun/smart-todo-app/issues/8)  
 **Dependencies:** #4, #5, #6  
 **Estimated:** 0.5 day
 
@@ -140,6 +147,7 @@ Configure AutoMapper for entity-to-DTO projections.
 
 ### #9 - Implement todo CRUD commands and handlers
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#9](https://github.com/akarthickarun/smart-todo-app/issues/9)  
 **Dependencies:** #4, #5, #8  
 **Estimated:** 2 days
 
@@ -163,6 +171,7 @@ Implement CreateTodoItem, UpdateTodoItem, and DeleteTodoItem commands with handl
 
 ### #10 - Implement todo CRUD queries and handlers
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#10](https://github.com/akarthickarun/smart-todo-app/issues/10)  
 **Dependencies:** #4, #5, #8  
 **Estimated:** 1.5 days
 
@@ -185,6 +194,7 @@ Implement GetTodoItemById and GetTodoItems (list) queries with handlers.
 
 ### #11 - Create TodoItemsController with REST endpoints
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#11](https://github.com/akarthickarun/smart-todo-app/issues/11)  
 **Dependencies:** #9, #10  
 **Estimated:** 1.5 days
 
@@ -207,6 +217,7 @@ Create the API controller with all CRUD REST endpoints following REST convention
 
 ### #12 - Add JWT authentication and authorization
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#12](https://github.com/akarthickarun/smart-todo-app/issues/12)  
 **Dependencies:** #11, #3  
 **Estimated:** 1.5 days
 
@@ -229,6 +240,7 @@ Configure JWT Bearer authentication and add authorization to endpoints.
 
 ### #13 - Add xUnit unit tests for handlers and validators
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#13](https://github.com/akarthickarun/smart-todo-app/issues/13)  
 **Dependencies:** #9, #10  
 **Estimated:** 2 days
 
@@ -250,6 +262,7 @@ Write unit tests for all command/query handlers and validators covering success 
 
 ### #14 - Add integration tests for API endpoints
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#14](https://github.com/akarthickarun/smart-todo-app/issues/14)  
 **Dependencies:** #11, #12, #13  
 **Estimated:** 2 days
 
@@ -274,6 +287,7 @@ Write integration tests for all API endpoints using WebApplicationFactory.
 
 ### #15 - Set up React + TypeScript + Vite + Tailwind
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#15](https://github.com/akarthickarun/smart-todo-app/issues/15)  
 **Dependencies:** None  
 **Estimated:** 1 day
 
@@ -293,6 +307,7 @@ Initialize frontend project with all dev dependencies and configuration.
 
 ### #16 - Create layouts and routing
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#16](https://github.com/akarthickarun/smart-todo-app/issues/16)  
 **Dependencies:** #15  
 **Estimated:** 1 day
 
@@ -315,6 +330,7 @@ Set up React Router with main layout and core routes.
 
 ### #17 - Create auth store and login page (mock)
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#17](https://github.com/akarthickarun/smart-todo-app/issues/17)  
 **Dependencies:** #16  
 **Estimated:** 1 day
 
@@ -337,6 +353,7 @@ Implement Zustand auth store and basic login page for development.
 
 ### #18 - Create axios instance and todo API client
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#18](https://github.com/akarthickarun/smart-todo-app/issues/18)  
 **Dependencies:** #5, #17  
 **Estimated:** 1.5 days
 
@@ -360,6 +377,7 @@ Build axios client with interceptors and todo API methods with Zod validation.
 
 ### #19 - Create TanStack Query hooks
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#19](https://github.com/akarthickarun/smart-todo-app/issues/19)  
 **Dependencies:** #18  
 **Estimated:** 1.5 days
 
@@ -385,6 +403,7 @@ Implement custom hooks for querying and mutating todos with TanStack Query v5.
 
 ### #20 - Create Todo components
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#20](https://github.com/akarthickarun/smart-todo-app/issues/20)  
 **Dependencies:** #15, #19  
 **Estimated:** 2 days
 
@@ -411,6 +430,7 @@ Build all reusable Todo components for list, create, edit, and delete operations
 
 ### #21 - Create TodosPage and integrate state
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#21](https://github.com/akarthickarun/smart-todo-app/issues/21)  
 **Dependencies:** #20, #19  
 **Estimated:** 1.5 days
 
@@ -435,6 +455,7 @@ Implement main TodosPage combining all components and connecting to API state.
 
 ### #22 - Add frontend component tests
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#22](https://github.com/akarthickarun/smart-todo-app/issues/22)  
 **Dependencies:** #20  
 **Estimated:** 2 days
 
@@ -461,6 +482,7 @@ Write component tests for all Todo components using Vitest + React Testing Libra
 
 ### #23 - Add frontend hook tests
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#23](https://github.com/akarthickarun/smart-todo-app/issues/23)  
 **Dependencies:** #19  
 **Estimated:** 1.5 days
 
@@ -488,6 +510,7 @@ Test TanStack Query hooks with renderHook and mocked axios.
 
 ### #24 - Add Docker setup
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#24](https://github.com/akarthickarun/smart-todo-app/issues/24)  
 **Dependencies:** #11, #21  
 **Estimated:** 1 day
 
@@ -512,6 +535,7 @@ Create Dockerfiles and docker-compose for full local development environment.
 
 ### #25 - Set up GitHub Actions CI pipeline
 **Status:** Not Started  
+**GitHub Issue:** [akarthickarun/smart-todo-app#25](https://github.com/akarthickarun/smart-todo-app/issues/25)  
 **Dependencies:** #13, #14, #22, #23  
 **Estimated:** 1 day
 
