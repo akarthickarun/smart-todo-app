@@ -164,7 +164,7 @@ public class ValidationBehaviorTests
     public async Task Handle_CancellationRequested_ShouldPassCancellationToken()
     {
         // Arrange
-        var cts = new CancellationTokenSource();
+        using var cts = new CancellationTokenSource();
         cts.Cancel();
 
         var validatorMock = new Mock<IValidator<TestRequest>>();

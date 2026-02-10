@@ -1,6 +1,6 @@
 using FluentValidation;
 using MediatR;
-using SmartTodoApp.Application.Common.Exceptions;
+using ValidationException = SmartTodoApp.Application.Common.Exceptions.ValidationException;
 
 namespace SmartTodoApp.Application.Common.Behaviors;
 
