@@ -179,7 +179,7 @@ public class ExceptionHandlingMiddlewareTests
 
         problemDetails.Should().NotBeNull();
         problemDetails!.Extensions.Should().ContainKey("correlationId");
-        problemDetails.Extensions["correlationId"].ToString().Should().Be(expectedCorrelationId);
+        problemDetails.Extensions["correlationId"]!.ToString().Should().Be(expectedCorrelationId);
     }
 
     [Fact]
@@ -211,7 +211,7 @@ public class ExceptionHandlingMiddlewareTests
 
         problemDetails.Should().NotBeNull();
         problemDetails!.Extensions.Should().ContainKey("correlationId");
-        problemDetails.Extensions["correlationId"].ToString().Should().Be(expectedCorrelationId);
+        problemDetails.Extensions["correlationId"]!.ToString().Should().Be(expectedCorrelationId);
     }
 
     [Fact]
