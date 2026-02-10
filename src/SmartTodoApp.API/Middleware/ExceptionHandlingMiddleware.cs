@@ -41,6 +41,13 @@ public class ExceptionHandlingMiddleware
     {
         _logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
 
+        // If the response has already started, we cannot modify headers or write to the body
+        if (context.Response.HasStarted)
+        {
+            _logger.LogWarning("Cannot write error response - response has already started");
+            return;
+        }
+
         var response = context.Response;
         response.ContentType = "application/problem+json";
 
