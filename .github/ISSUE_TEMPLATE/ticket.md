@@ -23,3 +23,6 @@ assignees: ''
 
 ## Related Tickets
 <!-- Link #3, #4, etc. -->
+
+## Branching
+<!-- For each ticket, create a dedicated branch and publish it to GitHub before starting work. -->
