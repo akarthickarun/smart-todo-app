@@ -86,7 +86,7 @@ Define the core Todo entity with all business logic and factory methods.
 ---
 
 ### #5 - Create DTOs in Shared.Contracts
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#8](https://github.com/akarthickarun/smart-todo-app/issues/8)  
 **Dependencies:** #4  
 **Estimated:** 0.5 day
@@ -95,12 +95,12 @@ Define the core Todo entity with all business logic and factory methods.
 Define data transfer objects for API contracts and frontend consumption.
 
 **Acceptance Criteria:**
-- [ ] Create TodoItemDto record in Shared.Contracts/TodoItems/TodoItemDto.cs
-- [ ] Create CreateTodoRequest record in Shared.Contracts/TodoItems/CreateTodoRequest.cs
-- [ ] Create UpdateTodoRequest record in Shared.Contracts/TodoItems/UpdateTodoRequest.cs
-- [ ] Ensure all DTOs match requirement specs for fields and types
-- [ ] Include data annotations for OpenAPI documentation if needed
-- [ ] All DTOs are immutable records
+- [x] Create TodoItemDto record in Shared.Contracts/TodoItems/TodoItemDto.cs
+- [x] Create CreateTodoRequest record in Shared.Contracts/TodoItems/CreateTodoRequest.cs
+- [x] Create UpdateTodoRequest record in Shared.Contracts/TodoItems/UpdateTodoRequest.cs
+- [x] Ensure all DTOs match requirement specs for fields and types
+- [x] Include data annotations for OpenAPI documentation if needed
+- [x] All DTOs are immutable records
 
 ---
 
