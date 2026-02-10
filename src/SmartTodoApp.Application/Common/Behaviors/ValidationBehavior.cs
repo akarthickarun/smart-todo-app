@@ -42,7 +42,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
         if (failures.Count != 0)
         {
-            throw new ValidationException(failures);
+            throw new Exceptions.ValidationException(failures);
         }
 
         return await next();
