@@ -4,6 +4,24 @@ Comprehensive tracking document for all 25 implementation tickets. Each ticket i
 
 ---
 
+## Phase 0: Project Documentation
+
+### #1 - Add Copilot instructions and requirements docs
+**Status:** ✅ Completed  
+**GitHub Issue:** [akarthickarun/smart-todo-app#1](https://github.com/akarthickarun/smart-todo-app/issues/1)  
+**Dependencies:** None  
+**Estimated:** 0.5 day
+
+**Description:**
+Establish baseline project documentation for Copilot guidance and requirements scope.
+
+**Acceptance Criteria:**
+- [x] Add .github/copilot-instructions.md with project guidance
+- [x] Add REQUIREMENTS.md with initial scope and constraints
+- [x] Verify documents are committed to the repository
+
+---
+
 ## Phase 1: Backend Foundation
 
 ### #2 - Set up ASP.NET Core 10 projects and dependency injection
@@ -27,7 +45,7 @@ Create the foundational project structure and configure dependency injection for
 ---
 
 ### #3 - Implement base middleware and error handling
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#6](https://github.com/akarthickarun/smart-todo-app/issues/6)  
 **Dependencies:** #2  
 **Estimated:** 1 day
@@ -36,12 +54,12 @@ Create the foundational project structure and configure dependency injection for
 Add core middleware for request correlation tracking, exception handling, and structured logging.
 
 **Acceptance Criteria:**
-- [ ] Create CorrelationIdMiddleware that generates/extracts X-Correlation-ID header
-- [ ] Create ExceptionHandlingMiddleware that returns RFC 7807 Problem Details
-- [ ] Register middleware in Program.cs in correct order
-- [ ] Configure Serilog with structured logging to console and file
-- [ ] Ensure CorrelationId is included in all logs
-- [ ] Test middleware with sample requests (manual or basic integration test)
+- [x] Create CorrelationIdMiddleware that generates/extracts X-Correlation-ID header
+- [x] Create ExceptionHandlingMiddleware that returns RFC 7807 Problem Details
+- [x] Register middleware in Program.cs in correct order
+- [x] Configure Serilog with structured logging to console and file
+- [x] Ensure CorrelationId is included in all logs
+- [x] Test middleware with sample requests (manual or basic integration test)
 
 ---
 
@@ -560,6 +578,7 @@ Create CI workflows for automated testing and build verification.
 
 | Phase | Tickets | Status |
 |-------|---------|--------|
+| 0. Project Documentation | #1 | ✅ #1 Completed |
 | 1. Backend Foundation | #2-3 | ✅ #2 Completed |
 | 2. Domain & Data | #4-8 | Not Started |
 | 3. Application (CQRS) | #9-10 | Not Started |
