@@ -13,7 +13,5 @@ public record UpdateTodoRequest(
     [StringLength(1000)]
     string? Description = null,
     
-    int? Status = null,
-    
     DateOnly? DueDate = null
 );
