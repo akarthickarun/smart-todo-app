@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartTodoApp.Application.Common.Exceptions;
-using System.Net;
 using System.Text.Json;
 
 namespace SmartTodoApp.API.Middleware;
@@ -45,12 +44,10 @@ public class ExceptionHandlingMiddleware
         response.ContentType = "application/problem+json";
 
         ProblemDetails problemDetails;
-        var statusCode = HttpStatusCode.InternalServerError;
 
         switch (exception)
         {
             case ValidationException validationException:
-                statusCode = HttpStatusCode.BadRequest;
                 problemDetails = new ValidationProblemDetails(validationException.Errors)
                 {
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
@@ -60,7 +57,6 @@ public class ExceptionHandlingMiddleware
                 break;
 
             case NotFoundException notFoundException:
-                statusCode = HttpStatusCode.NotFound;
                 problemDetails = new ProblemDetails
                 {
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
@@ -71,7 +67,6 @@ public class ExceptionHandlingMiddleware
                 break;
 
             default:
-                statusCode = HttpStatusCode.InternalServerError;
                 var environment = context.RequestServices.GetRequiredService<IHostEnvironment>();
                 var detail = environment.IsDevelopment()
                     ? exception.Message
@@ -101,7 +96,7 @@ public class ExceptionHandlingMiddleware
             problemDetails.Extensions["correlationId"] = correlationIdFromHeader.ToString();
         }
 
-        response.StatusCode = (int)statusCode;
+        response.StatusCode = problemDetails.Status ?? StatusCodes.Status500InternalServerError;
 
         var options = new JsonSerializerOptions
         {
