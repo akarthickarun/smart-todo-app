@@ -20,14 +20,14 @@ public class TodoItem
 
     public static TodoItem Create(string title, string? description, DateOnly? dueDate)
     {
-        ValidateTitle(title);
+        var trimmedTitle = ValidateTitle(title);
 
         var now = DateTime.UtcNow;
 
         return new TodoItem
         {
             Id = Guid.NewGuid(),
-            Title = title.Trim(),
+            Title = trimmedTitle,
             Description = description,
             Status = TodoStatus.Pending,
             DueDate = dueDate,
@@ -49,24 +49,28 @@ public class TodoItem
 
     public void UpdateDetails(string title, string? description, DateOnly? dueDate)
     {
-        ValidateTitle(title);
+        var trimmedTitle = ValidateTitle(title);
 
-        Title = title.Trim();
+        Title = trimmedTitle;
         Description = description;
         DueDate = dueDate;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    private static void ValidateTitle(string title)
+    private static string ValidateTitle(string title)
     {
         if (string.IsNullOrWhiteSpace(title))
         {
             throw new ArgumentException("Title cannot be empty.", nameof(title));
         }
 
-        if (title.Length > TitleMaxLength)
+        var trimmedTitle = title.Trim();
+
+        if (trimmedTitle.Length > TitleMaxLength)
         {
             throw new ArgumentException($"Title must not exceed {TitleMaxLength} characters.", nameof(title));
         }
+
+        return trimmedTitle;
     }
 }
