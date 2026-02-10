@@ -66,7 +66,7 @@ Add core middleware for request correlation tracking, exception handling, and st
 ## Phase 2: Domain & Data Layer
 
 ### #4 - Create Todo entity in Domain layer
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#7](https://github.com/akarthickarun/smart-todo-app/issues/7)  
 **Dependencies:** None  
 **Estimated:** 0.5 day
@@ -75,13 +75,13 @@ Add core middleware for request correlation tracking, exception handling, and st
 Define the core Todo entity with all business logic and factory methods.
 
 **Acceptance Criteria:**
-- [ ] Create TodoItem entity in Domain/Entities/TodoItem.cs
-- [ ] Implement properties: Id, Title, Description, Status (enum Pending/Completed), DueDate, CreatedAt, UpdatedAt
-- [ ] Implement factory method TodoItem.Create(string title, string? description, DateOnly? dueDate)
-- [ ] Implement business methods: MarkAsComplete(), UpdateDetails(title, description, dueDate)
-- [ ] Add validation in constructor (Title required, length constraints)
-- [ ] Create Status enum in Domain/Enums/TodoStatus.cs
-- [ ] No external dependencies in Domain
+- [x] Create TodoItem entity in Domain/Entities/TodoItem.cs
+- [x] Implement properties: Id, Title, Description, Status (enum Pending/Completed), DueDate, CreatedAt, UpdatedAt
+- [x] Implement factory method TodoItem.Create(string title, string? description, DateOnly? dueDate)
+- [x] Implement business methods: MarkAsComplete(), UpdateDetails(title, description, dueDate)
+- [x] Add validation in constructor (Title required, length constraints)
+- [x] Create Status enum in Domain/Enums/TodoStatus.cs
+- [x] No external dependencies in Domain
 
 ---
 

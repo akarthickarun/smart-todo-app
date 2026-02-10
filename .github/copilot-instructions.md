@@ -97,6 +97,10 @@
 - Zustand for client state (UI, preferences)
 - Keep components stateless when possible
 
+### 1.13 Branching for Tickets
+- For every new ticket, create a dedicated branch with a descriptive name
+- Publish the branch to GitHub before starting work for review and PR merge
+
 ---
 
 ## 2. Layer Responsibilities
