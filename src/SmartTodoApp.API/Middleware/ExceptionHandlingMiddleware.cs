@@ -38,8 +38,6 @@ public class ExceptionHandlingMiddleware
     /// </summary>
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        _logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
-
         // If the response has already started, we cannot modify headers or write to the body
         if (context.Response.HasStarted)
         {
@@ -55,6 +53,7 @@ public class ExceptionHandlingMiddleware
         switch (exception)
         {
             case ValidationException validationException:
+                _logger.LogWarning(exception, "Validation failed: {Message}", exception.Message);
                 problemDetails = new ValidationProblemDetails(validationException.Errors)
                 {
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
@@ -64,6 +63,7 @@ public class ExceptionHandlingMiddleware
                 break;
 
             case NotFoundException notFoundException:
+                _logger.LogWarning(exception, "Resource not found: {Message}", exception.Message);
                 problemDetails = new ProblemDetails
                 {
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
@@ -74,6 +74,7 @@ public class ExceptionHandlingMiddleware
                 break;
 
             default:
+                _logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
                 var environment = context.RequestServices.GetRequiredService<IHostEnvironment>();
                 var detail = environment.IsDevelopment()
                     ? exception.Message

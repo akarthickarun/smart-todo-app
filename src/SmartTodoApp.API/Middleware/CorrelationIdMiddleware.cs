@@ -34,7 +34,7 @@ public class CorrelationIdMiddleware
         // Add correlation ID to Serilog context for structured logging
         using (LogContext.PushProperty("CorrelationId", correlationId))
         {
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Request started: {Method} {Path}",
                 context.Request.Method,
                 context.Request.Path);
@@ -43,7 +43,7 @@ public class CorrelationIdMiddleware
             {
                 await _next(context);
 
-                _logger.LogInformation(
+                _logger.LogDebug(
                     "Request completed: {Method} {Path} - Status {StatusCode}",
                     context.Request.Method,
                     context.Request.Path,
