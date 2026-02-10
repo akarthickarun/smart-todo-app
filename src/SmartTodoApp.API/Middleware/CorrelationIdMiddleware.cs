@@ -25,6 +25,9 @@ public class CorrelationIdMiddleware
     {
         var correlationId = GetOrCreateCorrelationId(context);
 
+        // Store correlation ID in HttpContext.Items for downstream middleware
+        context.Items["CorrelationId"] = correlationId;
+
         // Add correlation ID to response headers
         context.Response.Headers.Append(CorrelationIdHeaderName, correlationId);
 
