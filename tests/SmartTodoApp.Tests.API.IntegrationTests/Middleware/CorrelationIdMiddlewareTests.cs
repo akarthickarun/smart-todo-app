@@ -125,29 +125,6 @@ public class CorrelationIdMiddlewareTests
         correlationId1.Should().NotBe(correlationId2);
     }
 
-    [Fact]
-    public async Task InvokeAsync_RequestWithException_ShouldStillReturnCorrelationId()
-    {
-        // Arrange
-        using var host = await CreateTestHost(_ => throw new InvalidOperationException("Test exception"));
-        var client = host.GetTestClient();
-        var expectedCorrelationId = Guid.NewGuid().ToString();
-        client.DefaultRequestHeaders.Add("X-Correlation-ID", expectedCorrelationId);
-
-        // Act
-        try
-        {
-            await client.GetAsync("/test");
-        }
-        catch
-        {
-            // Exception is expected
-        }
-
-        // Note: In a real scenario with ExceptionHandlingMiddleware, the response would be captured
-        // This test demonstrates that correlation ID is added before the exception occurs
-    }
-
     private static async Task<IHost> CreateTestHost(RequestDelegate? requestHandler = null)
     {
         var host = await new HostBuilder()
