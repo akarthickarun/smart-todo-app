@@ -145,7 +145,7 @@ Generate and apply the first EF Core migration to create the TodoItems table.
 ---
 
 ### #8 - Create AutoMapper MappingProfile
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#11](https://github.com/akarthickarun/smart-todo-app/issues/11)  
 **Dependencies:** #4, #5, #6  
 **Estimated:** 0.5 day
@@ -154,17 +154,17 @@ Generate and apply the first EF Core migration to create the TodoItems table.
 Configure AutoMapper for entity-to-DTO projections.
 
 **Acceptance Criteria:**
-- [ ] Create MappingProfile in Application/Common/Mappings/MappingProfile.cs
-- [ ] Map TodoItem → TodoItemDto
-- [ ] MappingProfile is registered in Program.cs
-- [ ] Test mapping works with simple unit test
+- [x] Create MappingProfile in Application/Common/Mappings/MappingProfile.cs
+- [x] Map TodoItem → TodoItemDto
+- [x] MappingProfile is registered in Program.cs
+- [x] Test mapping works with simple unit test
 
 ---
 
 ## Phase 3: Application Layer (CQRS)
 
 ### #9 - Implement todo CRUD commands and handlers
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#12](https://github.com/akarthickarun/smart-todo-app/issues/12)  
 **Dependencies:** #4, #5, #8  
 **Estimated:** 2 days
@@ -173,17 +173,17 @@ Configure AutoMapper for entity-to-DTO projections.
 Implement CreateTodoItem, UpdateTodoItem, and DeleteTodoItem commands with handlers and validators.
 
 **Acceptance Criteria:**
-- [ ] Create CreateTodoItemCommand record with Title, Description, DueDate
-- [ ] Create CreateTodoItemCommandValidator with FluentValidation (Title: required, 3-200 chars; Description: max 1000; DueDate: future)
-- [ ] Create CreateTodoItemCommandHandler that creates entity, adds to context, saves, returns Guid
-- [ ] Create UpdateTodoItemCommand record with Id, Title, Description, Status, DueDate
-- [ ] Create UpdateTodoItemCommandValidator with same rules
-- [ ] Create UpdateTodoItemCommandHandler that updates entity and saves
-- [ ] Create DeleteTodoItemCommand record with Id
-- [ ] Create DeleteTodoItemCommandHandler that deletes entity and saves
-- [ ] All handlers use async/await and CancellationToken
-- [ ] All handlers log with ILogger<T>
-- [ ] Handlers registered in ValidationBehavior pipeline
+- [x] Create CreateTodoItemCommand record with Title, Description, DueDate
+- [x] Create CreateTodoItemCommandValidator with FluentValidation (Title: required, 3-200 chars; Description: max 1000; DueDate: future)
+- [x] Create CreateTodoItemCommandHandler that creates entity, adds to context, saves, returns Guid
+- [x] Create UpdateTodoItemCommand record with Id, Title, Description, Status, DueDate
+- [x] Create UpdateTodoItemCommandValidator with same rules
+- [x] Create UpdateTodoItemCommandHandler that updates entity and saves
+- [x] Create DeleteTodoItemCommand record with Id
+- [x] Create DeleteTodoItemCommandHandler that deletes entity and saves
+- [x] All handlers use async/await and CancellationToken
+- [x] All handlers log with ILogger<T>
+- [x] Handlers registered in ValidationBehavior pipeline
 
 ---
 
@@ -580,8 +580,8 @@ Create CI workflows for automated testing and build verification.
 |-------|---------|--------|
 | 0. Project Documentation | #1 | ✅ #1 Completed |
 | 1. Backend Foundation | #2-3 | ✅ #2-3 Completed |
-| 2. Domain & Data | #4-8 | ✅ #4-7 Completed |
-| 3. Application (CQRS) | #9-10 | Not Started |
+| 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
+| 3. Application (CQRS) | #9-10 | ✅ #9 Completed |
 | 4. API Layer | #11-12 | Not Started |
 | 5. Backend Testing | #13-14 | Not Started |
 | 6. Frontend Setup | #15-17 | Not Started |
