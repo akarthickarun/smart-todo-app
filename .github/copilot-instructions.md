@@ -40,7 +40,7 @@
 2. **Branch creation steps:**
    ```bash
    git checkout main  # or develop
-   git pull origin main
+   git pull origin "$(git rev-parse --abbrev-ref HEAD)"
    git checkout -b feature/ticket-{number}-{description}
    ```
 
