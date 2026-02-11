@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SmartTodoApp.Domain.Entities;
+
 namespace SmartTodoApp.Application.Common.Interfaces;
 
 /// <summary>
@@ -6,6 +9,11 @@ namespace SmartTodoApp.Application.Common.Interfaces;
 /// </summary>
 public interface IApplicationDbContext
 {
+    /// <summary>
+    /// Gets the DbSet for todo items.
+    /// </summary>
+    DbSet<TodoItem> TodoItems { get; }
+
     /// <summary>
     /// Saves all changes made in this context to the database.
     /// </summary>

@@ -105,7 +105,7 @@ Define data transfer objects for API contracts and frontend consumption.
 ---
 
 ### #6 - Set up EF Core DbContext and configuration
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#9](https://github.com/akarthickarun/smart-todo-app/issues/9)  
 **Dependencies:** #4, #5  
 **Estimated:** 1 day
@@ -114,14 +114,14 @@ Define data transfer objects for API contracts and frontend consumption.
 Create EF Core DbContext and configure TodoItem entity with Fluent API.
 
 **Acceptance Criteria:**
-- [ ] Create ApplicationDbContext in Infrastructure/Persistence/ApplicationDbContext.cs
-- [ ] Add DbSet<TodoItem> TodoItems property
-- [ ] Create IApplicationDbContext interface in Application/Common/Interfaces/
-- [ ] Implement TodoItemConfiguration in Infrastructure/Persistence/Configurations/TodoItemConfiguration.cs
-- [ ] Configure all constraints: not null, max lengths, defaults
-- [ ] Configure indexes: IX_TodoItems_Status, IX_TodoItems_CreatedAt
-- [ ] Map DateOnly to SQL Server date type
-- [ ] Register in Program.cs with SQL Server connection string from appsettings
+- [x] Create ApplicationDbContext in Infrastructure/Persistence/ApplicationDbContext.cs
+- [x] Add DbSet<TodoItem> TodoItems property
+- [x] Create IApplicationDbContext interface in Application/Common/Interfaces/
+- [x] Implement TodoItemConfiguration in Infrastructure/Persistence/Configurations/TodoItemConfiguration.cs
+- [x] Configure all constraints: not null, max lengths, defaults
+- [x] Configure indexes: IX_TodoItems_Status, IX_TodoItems_CreatedAt
+- [x] Map DateOnly to SQL Server date type
+- [x] Register in Program.cs with SQL Server connection string from appsettings
 
 ---
 

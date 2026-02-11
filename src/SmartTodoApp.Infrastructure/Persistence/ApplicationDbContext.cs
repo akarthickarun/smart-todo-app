@@ -1,5 +1,7 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using SmartTodoApp.Application.Common.Interfaces;
+using SmartTodoApp.Domain.Entities;
 
 namespace SmartTodoApp.Infrastructure.Persistence;
 
@@ -15,17 +17,16 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     }
 
     /// <summary>
-    /// Gets or sets the DbSet for todos.
+    /// Gets the DbSet for todo items.
     /// </summary>
-    /// TODO: Add TodoItem DbSet when TodoItem entity is created
-    // public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         
-        // TODO: Apply entity configurations when created
-        // modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        // Apply all entity configurations from this assembly
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
