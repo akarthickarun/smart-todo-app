@@ -5,31 +5,31 @@ using SmartTodoApp.Application.Common.Exceptions;
 using SmartTodoApp.Application.Common.Interfaces;
 using SmartTodoApp.Domain.Entities;
 
-namespace SmartTodoApp.Application.TodoItems.Commands.UpdateTodoItem;
+namespace SmartTodoApp.Application.TodoItems.Commands.MarkTodoItemComplete;
 
 /// <summary>
-/// Handler for UpdateTodoItemCommand that updates an existing todo item.
+/// Handler for MarkTodoItemCompleteCommand that marks a todo item as complete.
 /// </summary>
-public class UpdateTodoItemCommandHandler : IRequestHandler<UpdateTodoItemCommand>
+public class MarkTodoItemCompleteCommandHandler : IRequestHandler<MarkTodoItemCompleteCommand>
 {
     private readonly IApplicationDbContext _context;
-    private readonly ILogger<UpdateTodoItemCommandHandler> _logger;
+    private readonly ILogger<MarkTodoItemCompleteCommandHandler> _logger;
 
-    public UpdateTodoItemCommandHandler(
+    public MarkTodoItemCompleteCommandHandler(
         IApplicationDbContext context,
-        ILogger<UpdateTodoItemCommandHandler> logger)
+        ILogger<MarkTodoItemCompleteCommandHandler> logger)
     {
         _context = context;
         _logger = logger;
     }
 
     /// <summary>
-    /// Updates an existing todo item.
+    /// Marks a todo item as complete.
     /// </summary>
-    public async Task Handle(UpdateTodoItemCommand request, CancellationToken cancellationToken)
+    public async Task Handle(MarkTodoItemCompleteCommand request, CancellationToken cancellationToken)
     {
         _logger.LogInformation(
-            "Updating todo item with ID: {TodoItemId}",
+            "Marking todo item as complete with ID: {TodoItemId}",
             request.Id);
 
         var todoItem = await _context.TodoItems
@@ -44,13 +44,12 @@ public class UpdateTodoItemCommandHandler : IRequestHandler<UpdateTodoItemComman
             throw new NotFoundException(nameof(TodoItem), request.Id);
         }
 
-        // Update details
-        todoItem.UpdateDetails(request.Title, request.Description, request.DueDate);
+        todoItem.MarkAsComplete();
 
         await _context.SaveChangesAsync(cancellationToken);
 
         _logger.LogInformation(
-            "Todo item updated successfully with ID: {TodoItemId}",
+            "Todo item marked as complete successfully with ID: {TodoItemId}",
             request.Id);
     }
 }

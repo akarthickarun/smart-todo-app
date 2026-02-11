@@ -1,5 +1,4 @@
 using MediatR;
-using SmartTodoApp.Domain.Enums;
 
 namespace SmartTodoApp.Application.TodoItems.Commands.UpdateTodoItem;
 
@@ -10,6 +9,5 @@ public record UpdateTodoItemCommand(
     Guid Id,
     string Title,
     string? Description,
-    TodoStatus Status,
     DateOnly? DueDate
 ) : IRequest;
