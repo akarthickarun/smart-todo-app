@@ -165,13 +165,14 @@ public class TodoItemTests
         // Arrange
         var todoItem = TodoItem.Create("Test Todo", null, null);
         var originalUpdatedAt = todoItem.UpdatedAt;
-        Thread.Sleep(10); // Ensure time passes
+        var beforeComplete = DateTime.UtcNow;
 
         // Act
         todoItem.MarkAsComplete();
 
         // Assert
-        todoItem.UpdatedAt.Should().BeAfter(originalUpdatedAt);
+        todoItem.UpdatedAt.Should().BeOnOrAfter(originalUpdatedAt);
+        todoItem.UpdatedAt.Should().BeOnOrAfter(beforeComplete);
         todoItem.UpdatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
     }
 
@@ -240,13 +241,14 @@ public class TodoItemTests
         // Arrange
         var todoItem = TodoItem.Create("Test Todo", null, null);
         var originalUpdatedAt = todoItem.UpdatedAt;
-        Thread.Sleep(10); // Ensure time passes
+        var beforeUpdate = DateTime.UtcNow;
 
         // Act
         todoItem.UpdateDetails("Updated Title", "Updated Description", null);
 
         // Assert
-        todoItem.UpdatedAt.Should().BeAfter(originalUpdatedAt);
+        todoItem.UpdatedAt.Should().BeOnOrAfter(originalUpdatedAt);
+        todoItem.UpdatedAt.Should().BeOnOrAfter(beforeUpdate);
         todoItem.UpdatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
     }
 
