@@ -53,9 +53,10 @@
 4. **Push and PR workflow:**
    ```bash
    git add .
-   git commit -m "feat: ticket #{number} - {description}\n\n{detailed changes}\n\nCloses #{issue-number}"
-   git push -u origin feature/ticket-{number}-{description}
+   git commit -m "feat: ticket #{number} - {brief-description}" -m "{detailed changes}" -m "Closes #{issue-number}"
+   git push -u origin feature/ticket-{number}-{brief-kebab-case-description}
    ```
+   - Use multiple `-m` flags for multi-line commit messages (one per paragraph)
    - Immediately push branch to GitHub after creation
    - Create PR for review before merging to main
    - Update TICKETS.md status to ✅ Completed in the same commit
