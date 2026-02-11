@@ -5,6 +5,8 @@ namespace SmartTodoApp.Shared.Contracts.TodoItems;
 /// </summary>
 public enum TodoStatus : int
 {
+    Pending = 0,
+    Completed = 1
 }
 
 /// <summary>
