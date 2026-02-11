@@ -38,15 +38,13 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
         builder.Property(x => x.DueDate)
             .HasColumnType("date");
 
-        // CreatedAt configuration with automatic UTC timestamp
+        // CreatedAt configuration
         builder.Property(x => x.CreatedAt)
-            .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
-        // UpdatedAt configuration with automatic UTC timestamp
+        // UpdatedAt configuration
         builder.Property(x => x.UpdatedAt)
-            .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
         // Indexes for query performance
         builder.HasIndex(x => x.Status)
