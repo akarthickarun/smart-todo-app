@@ -17,7 +17,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     }
 
     /// <summary>
-    /// Gets or sets the DbSet for todo items.
+    /// Gets the DbSet for todo items.
     /// </summary>
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
