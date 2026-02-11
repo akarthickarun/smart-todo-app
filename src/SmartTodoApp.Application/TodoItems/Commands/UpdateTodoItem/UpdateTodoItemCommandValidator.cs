@@ -17,9 +17,9 @@ public class UpdateTodoItemCommandValidator : AbstractValidator<UpdateTodoItemCo
             .NotEmpty().WithMessage("Title is required")
             .Must(title => !string.IsNullOrWhiteSpace(title))
                 .WithMessage("Title cannot be empty or whitespace")
-            .Must(title => title != null && title.Trim().Length >= 3)
+            .Must(title => title.Trim().Length >= 3)
                 .WithMessage("Title must be at least 3 characters")
-            .Must(title => title != null && title.Trim().Length <= 200)
+            .Must(title => title.Trim().Length <= 200)
                 .WithMessage("Title must not exceed 200 characters");
 
         RuleFor(x => x.Description)
