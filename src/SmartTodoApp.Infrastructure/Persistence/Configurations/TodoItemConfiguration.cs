@@ -14,8 +14,10 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
     {
         builder.ToTable("TodoItems");
 
-        // Primary key
+        // Primary key with sequential GUID to prevent index fragmentation
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id)
+            .HasDefaultValueSql("NEWSEQUENTIALID()");
 
         // Title configuration
         builder.Property(x => x.Title)
