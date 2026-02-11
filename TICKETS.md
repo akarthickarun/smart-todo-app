@@ -126,7 +126,7 @@ Create EF Core DbContext and configure TodoItem entity with Fluent API.
 ---
 
 ### #7 - Create and apply initial database migration
-**Status:** Not Started  
+**Status:** In Progress  
 **GitHub Issue:** [akarthickarun/smart-todo-app#10](https://github.com/akarthickarun/smart-todo-app/issues/10)  
 **Dependencies:** #6  
 **Estimated:** 0.5 day
@@ -135,11 +135,11 @@ Create EF Core DbContext and configure TodoItem entity with Fluent API.
 Generate and apply the first EF Core migration to create the TodoItems table.
 
 **Acceptance Criteria:**
-- [ ] Run dotnet ef migrations add InitialCreate
-- [ ] Migration file created with up/down methods
-- [ ] Review migration SQL matches schema requirements
-- [ ] Run dotnet ef database update to apply locally
-- [ ] SQL Server database and TodoItems table successfully created
+- [x] Run dotnet ef migrations add InitialCreate
+- [x] Migration file created with up/down methods
+- [x] Review migration SQL matches schema requirements
+- [x] Run dotnet ef database update to apply locally
+- [x] SQL Server database and TodoItems table successfully created
 - [ ] Verify table structure in SQL Server Management Studio
 
 ---
