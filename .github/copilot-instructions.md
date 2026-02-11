@@ -63,7 +63,8 @@
    - Update TICKETS.md status to ✅ Completed in the same commit
 
 5. **NEVER work directly on main/develop branch**
-6. **NEVER merge without creating a PR first**
+6. **NEVER push directly to main/develop**
+7. **NEVER merge without creating a PR first**
 
 ### Ticket Execution Checklist
 - [ ] Check TICKETS.md for next ticket to implement
