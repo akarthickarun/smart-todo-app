@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SmartTodoApp.Application.Common.Interfaces;
 using SmartTodoApp.Shared.Contracts.TodoItems;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
 
 namespace SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 
@@ -39,7 +38,7 @@ public class GetTodoItemsQueryHandler : IRequestHandler<GetTodoItemsQuery, List<
 
         if (request.Status.HasValue)
         {
-            query = query.Where(x => x.Status == (DomainTodoStatus)request.Status.Value);
+            query = query.Where(x => x.Status == request.Status.Value);
         }
 
         var todoItems = await query
