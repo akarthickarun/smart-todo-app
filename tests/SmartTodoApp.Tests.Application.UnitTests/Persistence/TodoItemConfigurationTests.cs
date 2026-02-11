@@ -10,6 +10,10 @@ namespace SmartTodoApp.Tests.Application.UnitTests.Persistence;
 /// <summary>
 /// Tests for TodoItem EF Core model configuration to prevent accidental constraint regressions.
 /// Uses SQL Server to test relational-specific configurations like column types and value converters.
+/// Note: These tests use SQL Server instead of InMemory database because:
+/// - InMemory doesn't support relational-specific features like GetColumnType()
+/// - Value converters aren't applied in InMemory provider
+/// - We need to verify the actual SQL Server type mappings (e.g., DateOnly -> date)
 /// </summary>
 public class TodoItemConfigurationTests
 {
@@ -18,6 +22,8 @@ public class TodoItemConfigurationTests
 
     public TodoItemConfigurationTests()
     {
+        // Use SQL Server for testing relational-specific configurations
+        // The connection string uses LocalDB which is typically available in dev/CI environments
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=SmartTodoAppTest;Trusted_Connection=true;TrustServerCertificate=true")
             .Options;
