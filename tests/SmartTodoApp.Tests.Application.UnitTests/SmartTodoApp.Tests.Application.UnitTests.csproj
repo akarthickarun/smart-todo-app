@@ -10,6 +10,8 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -23,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\SmartTodoApp.Application\SmartTodoApp.Application.csproj" />
     <ProjectReference Include="..\..\src\SmartTodoApp.Domain\SmartTodoApp.Domain.csproj" />
+    <ProjectReference Include="..\..\src\SmartTodoApp.Infrastructure\SmartTodoApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
