@@ -1,6 +1,8 @@
 using AutoMapper;
 using SmartTodoApp.Domain.Entities;
 using SmartTodoApp.Shared.Contracts.TodoItems;
+using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
+using ContractTodoStatus = SmartTodoApp.Shared.Contracts.TodoItems.TodoStatus;
 
 namespace SmartTodoApp.Application.Common.Mappings;
 
@@ -13,5 +15,9 @@ public class MappingProfile : Profile
     {
         // Map TodoItem entity to TodoItemDto for API responses
         CreateMap<TodoItem, TodoItemDto>();
+
+        // Explicit enum mapping to ensure alignment between domain and contract enums
+        CreateMap<DomainTodoStatus, ContractTodoStatus>();
+        CreateMap<ContractTodoStatus, DomainTodoStatus>();
     }
 }
