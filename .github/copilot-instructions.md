@@ -42,6 +42,7 @@
    git checkout main  # or develop
    git pull origin "$(git rev-parse --abbrev-ref HEAD)"
    git checkout -b feature/ticket-{number}-{description}
+   git push -u origin feature/ticket-{number}-{description}
    ```
 
 3. **Commit conventions:**
@@ -50,11 +51,11 @@
    - Example: `feat: ticket #7 - Add initial database migration`
    - Reference GitHub issue in commit body: `Closes #10`
 
-4. **Push and PR workflow:**
+4. **Commit and push workflow:**
    ```bash
    git add .
    git commit -m "feat: ticket #{number} - {brief-description}" -m "{detailed changes}" -m "Closes #{issue-number}"
-   git push -u origin feature/ticket-{number}-{brief-kebab-case-description}
+   git push
    ```
    - Use multiple `-m` flags for multi-line commit messages (one per paragraph)
    - Immediately push branch to GitHub after creation
