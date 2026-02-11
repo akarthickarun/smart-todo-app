@@ -54,9 +54,11 @@
 4. **Commit and push workflow:**
    ```bash
    git add .
-   git commit -m "feat: ticket #{number} - {description}\n\n{detailed changes}\n\nCloses #{issue-number}"
+   git commit -m "feat: ticket #{number} - {brief-description}" -m "{detailed changes}" -m "Closes #{issue-number}"
    git push
    ```
+   - Use multiple `-m` flags for multi-line commit messages (one per paragraph)
+   - Immediately push branch to GitHub after creation
    - Create PR for review before merging to main
    - Update TICKETS.md status to ✅ Completed in the same commit
 
