@@ -18,11 +18,6 @@ public class GetTodoItemsQueryValidator : AbstractValidator<GetTodoItemsQuery>
 
     private static bool BeValidEnumValue(DomainTodoStatus? status)
     {
-        if (!status.HasValue)
-        {
-            return true;
-        }
-
-        return Enum.IsDefined(typeof(DomainTodoStatus), status.Value);
+        return Enum.IsDefined(typeof(DomainTodoStatus), status!.Value);
     }
 }
