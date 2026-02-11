@@ -38,13 +38,15 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
         builder.Property(x => x.DueDate)
             .HasColumnType("date");
 
-        // CreatedAt configuration
+        // CreatedAt configuration with automatic UTC timestamp
         builder.Property(x => x.CreatedAt)
-            .IsRequired();
+            .IsRequired()
+            .HasDefaultValueSql("GETUTCDATE()");
 
-        // UpdatedAt configuration
+        // UpdatedAt configuration with automatic UTC timestamp
         builder.Property(x => x.UpdatedAt)
-            .IsRequired();
+            .IsRequired()
+            .HasDefaultValueSql("GETUTCDATE()");
 
         // Indexes for query performance
         builder.HasIndex(x => x.Status)
@@ -52,5 +54,9 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
 
         builder.HasIndex(x => x.CreatedAt)
             .HasDatabaseName("IX_TodoItems_CreatedAt");
+
+        // Composite index for querying status with due date (e.g., overdue incomplete items)
+        builder.HasIndex(x => new { x.Status, x.DueDate })
+            .HasDatabaseName("IX_TodoItems_Status_DueDate");
     }
 }
