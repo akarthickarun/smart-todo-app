@@ -27,6 +27,55 @@
 
 ---
 
+## ⚠️ CRITICAL WORKFLOW RULES - READ FIRST
+
+**These rules MUST be followed for every ticket implementation:**
+
+### Branching Workflow
+1. **ALWAYS create a dedicated feature branch BEFORE starting any ticket**
+   - Branch naming convention: `feature/ticket-{number}-{brief-kebab-case-description}`
+   - Example: `feature/ticket-7-database-migration`
+   - Create from main/develop branch depending on project setup
+
+2. **Branch creation steps:**
+   ```bash
+   git checkout main  # or develop
+   git pull origin main
+   git checkout -b feature/ticket-{number}-{description}
+   ```
+
+3. **Commit conventions:**
+   - Use conventional commit format: `feat:`, `fix:`, `chore:`, `docs:`, `test:`
+   - Include ticket number in commit message
+   - Example: `feat: ticket #7 - Add initial database migration`
+   - Reference GitHub issue in commit body: `Closes #10`
+
+4. **Push and PR workflow:**
+   ```bash
+   git add .
+   git commit -m "feat: ticket #{number} - {description}\n\n{detailed changes}\n\nCloses #{issue-number}"
+   git push -u origin feature/ticket-{number}-{description}
+   ```
+   - Immediately push branch to GitHub after creation
+   - Create PR for review before merging to main
+   - Update TICKETS.md status to ✅ Completed in the same commit
+
+5. **NEVER work directly on main/develop branch**
+6. **NEVER merge without creating a PR first**
+
+### Ticket Execution Checklist
+- [ ] Check TICKETS.md for next ticket to implement
+- [ ] Verify all dependencies are completed
+- [ ] Create feature branch following naming convention
+- [ ] Push branch to GitHub
+- [ ] Implement changes following acceptance criteria
+- [ ] Update TICKETS.md status to ✅ Completed
+- [ ] Commit with conventional commit format
+- [ ] Push changes
+- [ ] Ready for PR review
+
+---
+
 ## 1. Golden Rules
 
 ### 1.1 CQRS Separation
@@ -98,8 +147,9 @@
 - Keep components stateless when possible
 
 ### 1.13 Branching for Tickets
-- For every new ticket, create a dedicated branch with a descriptive name
-- Publish the branch to GitHub before starting work for review and PR merge
+- See **CRITICAL WORKFLOW RULES** at the top of this document
+- ALWAYS create a dedicated branch before starting any ticket
+- Follow the branching workflow checklist for every implementation
 
 ---
 
