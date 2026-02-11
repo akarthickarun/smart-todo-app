@@ -14,10 +14,10 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
     {
         builder.ToTable("TodoItems");
 
-        // Primary key with sequential GUID to prevent index fragmentation
+        // Primary key - GUIDs generated in application for immediate availability
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id)
-            .HasDefaultValueSql("NEWSEQUENTIALID()");
+            .ValueGeneratedNever(); // Application generates GUIDs
 
         // Title configuration
         builder.Property(x => x.Title)
@@ -38,15 +38,13 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
         builder.Property(x => x.DueDate)
             .HasColumnType("date");
 
-        // CreatedAt configuration with automatic UTC timestamp
+        // CreatedAt configuration
         builder.Property(x => x.CreatedAt)
-            .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
-        // UpdatedAt configuration with automatic UTC timestamp
+        // UpdatedAt configuration
         builder.Property(x => x.UpdatedAt)
-            .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .IsRequired();
 
         // Indexes for query performance
         builder.HasIndex(x => x.Status)
