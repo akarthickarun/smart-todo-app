@@ -223,12 +223,27 @@ public class TodoItemConfigurationTests
     }
 
     [Fact]
-    public void TodoItem_ShouldHaveExactlyTwoIndexes()
+    public void TodoItem_ShouldHaveCompositeIndexOnStatusAndDueDate()
+    {
+        // Arrange
+        var indexes = _entityType.GetIndexes();
+        var compositeIndex = indexes.FirstOrDefault(i => 
+            i.Properties.Count == 2 && 
+            i.Properties[0].Name == "Status" &&
+            i.Properties[1].Name == "DueDate");
+
+        // Assert
+        compositeIndex.Should().NotBeNull();
+        compositeIndex!.GetDatabaseName().Should().Be("IX_TodoItems_Status_DueDate");
+    }
+
+    [Fact]
+    public void TodoItem_ShouldHaveExactlyThreeIndexes()
     {
         // Arrange
         var indexes = _entityType.GetIndexes();
 
         // Assert
-        indexes.Should().HaveCount(2);
+        indexes.Should().HaveCount(3);
     }
 }
