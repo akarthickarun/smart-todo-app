@@ -46,10 +46,10 @@ public class UpdateTodoItemCommandValidatorTests
     [InlineData("   ")]
     [InlineData("\t")]
     [InlineData("\n")]
-    public void Validate_EmptyOrWhitespaceTitle_ShouldHaveValidationError(string title)
+    public void Validate_EmptyOrWhitespaceTitle_ShouldHaveValidationError(string? title)
     {
         // Arrange
-        var command = new UpdateTodoItemCommand(Guid.NewGuid(), title, null, null);
+        var command = new UpdateTodoItemCommand(Guid.NewGuid(), title!, null, null);
 
         // Act
         var result = _validator.Validate(command);
