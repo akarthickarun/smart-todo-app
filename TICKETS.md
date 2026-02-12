@@ -188,7 +188,7 @@ Implement CreateTodoItem, UpdateTodoItem, and DeleteTodoItem commands with handl
 ---
 
 ### #10 - Implement todo CRUD queries and handlers
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#13](https://github.com/akarthickarun/smart-todo-app/issues/13)  
 **Dependencies:** #4, #5, #8  
 **Estimated:** 1.5 days
@@ -197,14 +197,14 @@ Implement CreateTodoItem, UpdateTodoItem, and DeleteTodoItem commands with handl
 Implement GetTodoItemById and GetTodoItems (list) queries with handlers.
 
 **Acceptance Criteria:**
-- [ ] Create GetTodoItemByIdQuery record with Id
-- [ ] Create GetTodoItemByIdQueryHandler that uses AsNoTracking + ProjectTo<TodoItemDto>
-- [ ] Handler throws NotFoundException if todo not found
-- [ ] Create GetTodoItemsQuery record with optional Status filter
-- [ ] Create GetTodoItemsQueryHandler that filters by Status if provided, orders by CreatedAt desc
-- [ ] Handler uses AsNoTracking + ProjectTo<TodoItemDto>
-- [ ] Both handlers log with ILogger<T>
-- [ ] All queries use async/await and CancellationToken
+- [x] Create GetTodoItemByIdQuery record with Id
+- [x] Create GetTodoItemByIdQueryHandler that uses AsNoTracking + ProjectTo<TodoItemDto>
+- [x] Handler throws NotFoundException if todo not found
+- [x] Create GetTodoItemsQuery record with optional Status filter
+- [x] Create GetTodoItemsQueryHandler that filters by Status if provided, orders by CreatedAt desc
+- [x] Handler uses AsNoTracking + ProjectTo<TodoItemDto>
+- [x] Both handlers log with ILogger<T>
+- [x] All queries use async/await and CancellationToken
 
 ---
 
@@ -581,7 +581,7 @@ Create CI workflows for automated testing and build verification.
 | 0. Project Documentation | #1 | ✅ #1 Completed |
 | 1. Backend Foundation | #2-3 | ✅ #2-3 Completed |
 | 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
-| 3. Application (CQRS) | #9-10 | ✅ #9 Completed |
+| 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
 | 4. API Layer | #11-12 | Not Started |
 | 5. Backend Testing | #13-14 | Not Started |
 | 6. Frontend Setup | #15-17 | Not Started |
