@@ -1,4 +1,6 @@
 using AutoMapper;
+using SmartTodoApp.Application.TodoItems.Commands.CreateTodoItem;
+using SmartTodoApp.Application.TodoItems.Commands.UpdateTodoItem;
 using SmartTodoApp.Domain.Entities;
 using SmartTodoApp.Shared.Contracts.TodoItems;
 using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
@@ -16,6 +18,10 @@ public class MappingProfile : Profile
         // Map TodoItem entity to TodoItemDto for API responses
         CreateMap<TodoItem, TodoItemDto>()
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => (ContractTodoStatus)src.Status));
+
+        // Map CreateTodoRequest to CreateTodoItemCommand for API layer
+        CreateMap<CreateTodoRequest, CreateTodoItemCommand>()
+            .ConstructUsing(src => new CreateTodoItemCommand(src.Title, src.Description, src.DueDate));
 
         // Explicit enum mapping to ensure alignment between domain and contract enums
         CreateMap<DomainTodoStatus, ContractTodoStatus>()

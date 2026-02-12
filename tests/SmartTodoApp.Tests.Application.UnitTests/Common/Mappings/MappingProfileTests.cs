@@ -85,4 +85,42 @@ public class MappingProfileTests
         dto.Status.Should().Be((ContractTodoStatus)DomainTodoStatus.Pending);
         dto.Title.Should().Be("Pending Todo");
     }
+
+    [Fact]
+    public void CreateTodoRequest_ShouldMapToCreateTodoItemCommand()
+    {
+        // Arrange
+        var request = new CreateTodoRequest(
+            Title: "Test Title",
+            Description: "Test Description",
+            DueDate: new DateOnly(2026, 12, 31));
+
+        // Act
+        var command = _mapper.Map<SmartTodoApp.Application.TodoItems.Commands.CreateTodoItem.CreateTodoItemCommand>(request);
+
+        // Assert
+        command.Should().NotBeNull();
+        command.Title.Should().Be("Test Title");
+        command.Description.Should().Be("Test Description");
+        command.DueDate.Should().Be(new DateOnly(2026, 12, 31));
+    }
+
+    [Fact]
+    public void CreateTodoRequest_WithoutOptionalFields_ShouldMapToCreateTodoItemCommand()
+    {
+        // Arrange
+        var request = new CreateTodoRequest(
+            Title: "Test Title",
+            Description: null,
+            DueDate: null);
+
+        // Act
+        var command = _mapper.Map<SmartTodoApp.Application.TodoItems.Commands.CreateTodoItem.CreateTodoItemCommand>(request);
+
+        // Assert
+        command.Should().NotBeNull();
+        command.Title.Should().Be("Test Title");
+        command.Description.Should().BeNull();
+        command.DueDate.Should().BeNull();
+    }
 }
