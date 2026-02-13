@@ -1,10 +1,11 @@
 using FluentValidation;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
+using SmartTodoApp.Shared.Contracts.TodoItems;
 
 namespace SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 
 /// <summary>
 /// Validator for GetTodoItemsQuery.
+/// Validates the contract TodoStatus value.
 /// </summary>
 public class GetTodoItemsQueryValidator : AbstractValidator<GetTodoItemsQuery>
 {
@@ -16,8 +17,8 @@ public class GetTodoItemsQueryValidator : AbstractValidator<GetTodoItemsQuery>
             .When(x => x.Status.HasValue);
     }
 
-    private static bool BeValidEnumValue(DomainTodoStatus? status)
+    private static bool BeValidEnumValue(TodoStatus? status)
     {
-        return Enum.IsDefined(typeof(DomainTodoStatus), status!.Value);
+        return Enum.IsDefined(typeof(TodoStatus), status!.Value);
     }
 }

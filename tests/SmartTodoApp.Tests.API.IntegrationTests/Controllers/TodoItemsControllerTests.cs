@@ -10,8 +10,6 @@ using SmartTodoApp.Application.TodoItems.Commands.UpdateTodoItem;
 using SmartTodoApp.Application.TodoItems.Queries.GetTodoItemById;
 using SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 using SmartTodoApp.Shared.Contracts.TodoItems;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
-using ContractTodoStatus = SmartTodoApp.Shared.Contracts.TodoItems.TodoStatus;
 
 namespace SmartTodoApp.Tests.API.IntegrationTests.Controllers;
 
@@ -73,7 +71,7 @@ public class TodoItemsControllerUnitTests
             todoId,
             "Test Title",
             "Test Description",
-            ContractTodoStatus.Pending,
+            TodoStatus.Pending,
             null,
             DateTime.UtcNow,
             DateTime.UtcNow);
@@ -103,7 +101,7 @@ public class TodoItemsControllerUnitTests
         var token = new CancellationTokenSource().Token;
         var list = new List<TodoItemDto>
         {
-            new(Guid.NewGuid(), "Completed", null, ContractTodoStatus.Completed, null, DateTime.UtcNow, DateTime.UtcNow)
+            new(Guid.NewGuid(), "Completed", null, TodoStatus.Completed, null, DateTime.UtcNow, DateTime.UtcNow)
         };
 
         _mediatorMock
@@ -111,7 +109,7 @@ public class TodoItemsControllerUnitTests
             .ReturnsAsync(list);
 
         // Act
-        var result = await _controller.GetAll(ContractTodoStatus.Completed, token);
+        var result = await _controller.GetAll(TodoStatus.Completed, token);
 
         // Assert
         var ok = result.Result as OkObjectResult;
@@ -119,7 +117,7 @@ public class TodoItemsControllerUnitTests
         ok!.Value.Should().Be(list);
 
         _mediatorMock.Verify(m => m.Send(
-            It.Is<GetTodoItemsQuery>(q => q.Status == DomainTodoStatus.Completed),
+            It.Is<GetTodoItemsQuery>(q => q.Status == TodoStatus.Completed),
                 It.Is<CancellationToken>(t => t == token)),
             Times.Once);
     }

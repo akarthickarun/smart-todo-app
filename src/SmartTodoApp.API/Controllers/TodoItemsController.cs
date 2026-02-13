@@ -7,8 +7,6 @@ using SmartTodoApp.Application.TodoItems.Commands.UpdateTodoItem;
 using SmartTodoApp.Application.TodoItems.Queries.GetTodoItemById;
 using SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 using SmartTodoApp.Shared.Contracts.TodoItems;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
-using ContractTodoStatus = SmartTodoApp.Shared.Contracts.TodoItems.TodoStatus;
 
 namespace SmartTodoApp.API.Controllers;
 
@@ -103,14 +101,10 @@ public class TodoItemsController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(List<TodoItemDto>), StatusCodes.Status200OK)]
     public async Task<ActionResult<List<TodoItemDto>>> GetAll(
-        [FromQuery] ContractTodoStatus? status,
+        [FromQuery] TodoStatus? status,
         CancellationToken cancellationToken)
     {
-        DomainTodoStatus? domainStatus = status.HasValue
-            ? (DomainTodoStatus)status.Value
-            : null;
-
-        var query = new GetTodoItemsQuery(domainStatus);
+        var query = new GetTodoItemsQuery(status);
         var result = await _mediator.Send(query, cancellationToken);
 
         return Ok(result);

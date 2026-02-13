@@ -1,6 +1,6 @@
 using FluentAssertions;
 using SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
+using SmartTodoApp.Shared.Contracts.TodoItems;
 
 namespace SmartTodoApp.Tests.Application.UnitTests.TodoItems.Queries.GetTodoItems;
 
@@ -31,7 +31,7 @@ public class GetTodoItemsQueryValidatorTests
     public void Validate_ValidQuery_WithPendingStatus_ShouldNotHaveValidationErrors()
     {
         // Arrange
-        var query = new GetTodoItemsQuery(DomainTodoStatus.Pending);
+        var query = new GetTodoItemsQuery(TodoStatus.Pending);
 
         // Act
         var result = _validator.Validate(query);
@@ -45,7 +45,7 @@ public class GetTodoItemsQueryValidatorTests
     public void Validate_ValidQuery_WithCompletedStatus_ShouldNotHaveValidationErrors()
     {
         // Arrange
-        var query = new GetTodoItemsQuery(DomainTodoStatus.Completed);
+        var query = new GetTodoItemsQuery(TodoStatus.Completed);
 
         // Act
         var result = _validator.Validate(query);
@@ -65,7 +65,7 @@ public class GetTodoItemsQueryValidatorTests
     public void Validate_InvalidEnumValue_ShouldHaveValidationError(int invalidStatus)
     {
         // Arrange
-        var query = new GetTodoItemsQuery((DomainTodoStatus)invalidStatus);
+        var query = new GetTodoItemsQuery((TodoStatus)invalidStatus);
 
         // Act
         var result = _validator.Validate(query);
@@ -81,7 +81,7 @@ public class GetTodoItemsQueryValidatorTests
     public void Validate_InvalidEnumValue_ShouldHaveCorrectErrorMessage()
     {
         // Arrange
-        var query = new GetTodoItemsQuery((DomainTodoStatus)999);
+        var query = new GetTodoItemsQuery((TodoStatus)999);
 
         // Act
         var result = _validator.Validate(query);
