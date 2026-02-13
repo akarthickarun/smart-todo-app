@@ -35,7 +35,8 @@ public class TodoItemsControllerUnitTests
         // Arrange
         var request = new CreateTodoRequest("Test Title", "Test Description", new DateOnly(2030, 1, 1));
         var todoId = Guid.NewGuid();
-        var token = CancellationToken.None;
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
 
         _mediatorMock
             .Setup(m => m.Send(It.IsAny<CreateTodoItemCommand>(), It.IsAny<CancellationToken>()))
@@ -66,7 +67,8 @@ public class TodoItemsControllerUnitTests
     {
         // Arrange
         var todoId = Guid.NewGuid();
-        var token = new CancellationTokenSource().Token;
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
         var dto = new TodoItemDto(
             todoId,
             "Test Title",
@@ -98,7 +100,8 @@ public class TodoItemsControllerUnitTests
     public async Task GetAll_WithCompletedStatus_ShouldReturnOkWithList()
     {
         // Arrange
-        var token = new CancellationTokenSource().Token;
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
         var list = new List<TodoItemDto>
         {
             new(Guid.NewGuid(), "Completed", null, TodoStatus.Completed, null, DateTime.UtcNow, DateTime.UtcNow)
@@ -127,7 +130,8 @@ public class TodoItemsControllerUnitTests
     {
         // Arrange
         var todoId = Guid.NewGuid();
-        var token = new CancellationTokenSource().Token;
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
         var request = new UpdateTodoRequest("Updated Title", "Updated Description", new DateOnly(2031, 2, 2));
 
         _mediatorMock
@@ -155,7 +159,8 @@ public class TodoItemsControllerUnitTests
     {
         // Arrange
         var todoId = Guid.NewGuid();
-        var token = new CancellationTokenSource().Token;
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
 
         _mediatorMock
             .Setup(m => m.Send(It.IsAny<DeleteTodoItemCommand>(), It.IsAny<CancellationToken>()))
@@ -178,7 +183,8 @@ public class TodoItemsControllerUnitTests
     {
         // Arrange
         var todoId = Guid.NewGuid();
-        var token = new CancellationTokenSource().Token;
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
 
         _mediatorMock
             .Setup(m => m.Send(It.IsAny<MarkTodoItemCompleteCommand>(), It.IsAny<CancellationToken>()))
