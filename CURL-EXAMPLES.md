@@ -38,6 +38,6 @@ curl.exe -k -X DELETE https://localhost:7083/api/todoitems/{id}
 
 ## Note:
 - Use -k flag to ignore SSL certificate warnings in development
-- Status values: 0=Pending, 1=Completed, 2=Cancelled
+- Status values: 0=Pending, 1=Completed
 - DueDate format: yyyy-MM-dd (e.g., "2026-02-20")
 - Replace {id} with actual GUID from create response
