@@ -32,7 +32,7 @@ public class TodoItemsControllerTests
         // Arrange
         var request = new CreateTodoRequest("Test Title", "Test Description", new DateOnly(2030, 1, 1));
         var todoId = Guid.NewGuid();
-        var token = new CancellationTokenSource().Token;
+        var token = CancellationToken.None;
 
         _mediatorMock
             .Setup(m => m.Send(It.IsAny<CreateTodoItemCommand>(), It.IsAny<CancellationToken>()))
