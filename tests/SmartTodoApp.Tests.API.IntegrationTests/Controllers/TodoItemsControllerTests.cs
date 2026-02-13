@@ -15,12 +15,17 @@ using ContractTodoStatus = SmartTodoApp.Shared.Contracts.TodoItems.TodoStatus;
 
 namespace SmartTodoApp.Tests.API.IntegrationTests.Controllers;
 
-public class TodoItemsControllerTests
+/// <summary>
+/// Unit tests for TodoItemsController that verify the controller correctly delegates
+/// to MediatR handlers. These are unit tests using mocks, not integration tests.
+/// For true integration tests, see Web API integration tests using WebApplicationFactory.
+/// </summary>
+public class TodoItemsControllerUnitTests
 {
     private readonly Mock<IMediator> _mediatorMock;
     private readonly TodoItemsController _controller;
 
-    public TodoItemsControllerTests()
+    public TodoItemsControllerUnitTests()
     {
         _mediatorMock = new Mock<IMediator>();
         _controller = new TodoItemsController(_mediatorMock.Object);
