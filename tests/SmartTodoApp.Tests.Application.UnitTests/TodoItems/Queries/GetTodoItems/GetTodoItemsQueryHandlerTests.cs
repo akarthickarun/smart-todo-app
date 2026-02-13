@@ -8,7 +8,6 @@ using SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 using SmartTodoApp.Domain.Entities;
 using SmartTodoApp.Domain.Enums;
 using SmartTodoApp.Infrastructure.Persistence;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
 using ContractTodoStatus = SmartTodoApp.Shared.Contracts.TodoItems.TodoStatus;
 
 namespace SmartTodoApp.Tests.Application.UnitTests.TodoItems.Queries.GetTodoItems;
@@ -85,7 +84,7 @@ public class GetTodoItemsQueryHandlerTests : IDisposable
         _context.TodoItems.AddRange(pendingItem1, pendingItem2, completedItem);
         await _context.SaveChangesAsync();
 
-        var query = new GetTodoItemsQuery(DomainTodoStatus.Pending);
+        var query = new GetTodoItemsQuery(ContractTodoStatus.Pending);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
@@ -93,7 +92,7 @@ public class GetTodoItemsQueryHandlerTests : IDisposable
         // Assert
         result.Should().NotBeNull();
         result.Should().HaveCount(2);
-        result.Should().OnlyContain(x => x.Status == (ContractTodoStatus)DomainTodoStatus.Pending);
+        result.Should().OnlyContain(x => x.Status == ContractTodoStatus.Pending);
     }
 
     [Fact]
@@ -109,7 +108,7 @@ public class GetTodoItemsQueryHandlerTests : IDisposable
         _context.TodoItems.AddRange(pendingItem, completedItem1, completedItem2);
         await _context.SaveChangesAsync();
 
-        var query = new GetTodoItemsQuery(DomainTodoStatus.Completed);
+        var query = new GetTodoItemsQuery(ContractTodoStatus.Completed);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
@@ -117,7 +116,7 @@ public class GetTodoItemsQueryHandlerTests : IDisposable
         // Assert
         result.Should().NotBeNull();
         result.Should().HaveCount(2);
-        result.Should().OnlyContain(x => x.Status == (ContractTodoStatus)DomainTodoStatus.Completed);
+        result.Should().OnlyContain(x => x.Status == ContractTodoStatus.Completed);
     }
 
     [Fact]
@@ -138,7 +137,7 @@ public class GetTodoItemsQueryHandlerTests : IDisposable
     public async Task Handle_WithFilter_ShouldLogInformationWithFilterValue()
     {
         // Arrange
-        var query = new GetTodoItemsQuery(DomainTodoStatus.Pending);
+        var query = new GetTodoItemsQuery(ContractTodoStatus.Pending);
 
         // Act
         await _handler.Handle(query, CancellationToken.None);
@@ -217,7 +216,7 @@ public class GetTodoItemsQueryHandlerTests : IDisposable
         _context.TodoItems.AddRange(pendingItem1, pendingItem2, pendingItem3);
         await _context.SaveChangesAsync();
 
-        var query = new GetTodoItemsQuery(DomainTodoStatus.Pending);
+        var query = new GetTodoItemsQuery(ContractTodoStatus.Pending);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
