@@ -211,7 +211,7 @@ Implement GetTodoItemById and GetTodoItems (list) queries with handlers.
 ## Phase 4: API Layer
 
 ### #11 - Create TodoItemsController with REST endpoints
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#14](https://github.com/akarthickarun/smart-todo-app/issues/14)  
 **Dependencies:** #9, #10  
 **Estimated:** 1.5 days
@@ -220,16 +220,19 @@ Implement GetTodoItemById and GetTodoItems (list) queries with handlers.
 Create the API controller with all CRUD REST endpoints following REST conventions.
 
 **Acceptance Criteria:**
-- [ ] Create TodoItemsController in API/Controllers/TodoItemsController.cs
-- [ ] Implement POST /api/todoitems (CreateTodoItemCommand) → 201 Created
-- [ ] Implement GET /api/todoitems/{id} (GetTodoItemByIdQuery) → 200 OK or 404
-- [ ] Implement PUT /api/todoitems/{id} (UpdateTodoItemCommand) → 200 OK or 404
-- [ ] Implement DELETE /api/todoitems/{id} (DeleteTodoItemCommand) → 204 No Content or 404
-- [ ] Implement GET /api/todoitems?status=Pending|Completed (GetTodoItemsQuery) → 200 OK
-- [ ] Add [ProducesResponseType] attributes for OpenAPI
-- [ ] Create requests return CreatedAtAction with location header
-- [ ] All endpoints delegate to IMediator
-- [ ] No business logic in controller
+- [x] Create TodoItemsController in API/Controllers/TodoItemsController.cs
+- [x] Implement POST /api/todoitems (CreateTodoItemCommand) → 201 Created
+- [x] Implement GET /api/todoitems/{id} (GetTodoItemByIdQuery) → 200 OK or 404
+- [x] Implement PUT /api/todoitems/{id} (UpdateTodoItemCommand) → 200 OK or 404
+- [x] Implement DELETE /api/todoitems/{id} (DeleteTodoItemCommand) → 204 No Content or 404
+- [x] Implement GET /api/todoitems?status=Pending|Completed (GetTodoItemsQuery) → 200 OK
+- [x] Implement PATCH /api/todoitems/{id}/complete (MarkTodoItemCompleteCommand) → 200 OK or 404
+- [x] Add [ProducesResponseType] attributes for OpenAPI
+- [x] Create requests return CreatedAtAction with location header
+- [x] All endpoints delegate to IMediator
+- [x] All endpoints use CancellationToken
+- [x] Unit tests for controller endpoints
+- [ ] Manual check with Postman/curl
 
 ---
 

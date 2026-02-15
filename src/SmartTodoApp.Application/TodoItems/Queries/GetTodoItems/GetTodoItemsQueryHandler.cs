@@ -5,11 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SmartTodoApp.Application.Common.Interfaces;
 using SmartTodoApp.Shared.Contracts.TodoItems;
+using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
 
 namespace SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 
 /// <summary>
 /// Handler for GetTodoItemsQuery that retrieves a filtered list of todo items.
+/// Maps contract TodoStatus to domain TodoStatus internally to keep controllers thin.
 /// </summary>
 public class GetTodoItemsQueryHandler : IRequestHandler<GetTodoItemsQuery, List<TodoItemDto>>
 {
@@ -29,6 +31,7 @@ public class GetTodoItemsQueryHandler : IRequestHandler<GetTodoItemsQuery, List<
 
     /// <summary>
     /// Retrieves todo items, optionally filtered by status.
+    /// Converts contract TodoStatus to domain TodoStatus for filtering.
     /// </summary>
     public async Task<List<TodoItemDto>> Handle(GetTodoItemsQuery request, CancellationToken cancellationToken)
     {
@@ -38,7 +41,9 @@ public class GetTodoItemsQueryHandler : IRequestHandler<GetTodoItemsQuery, List<
 
         if (request.Status.HasValue)
         {
-            query = query.Where(x => x.Status == request.Status.Value);
+            // Map contract TodoStatus to domain TodoStatus
+            var domainStatus = (DomainTodoStatus)request.Status.Value;
+            query = query.Where(x => x.Status == domainStatus);
         }
 
         var todoItems = await query

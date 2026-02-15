@@ -1,13 +1,11 @@
 using MediatR;
 using SmartTodoApp.Shared.Contracts.TodoItems;
-using DomainTodoStatus = SmartTodoApp.Domain.Enums.TodoStatus;
 
 namespace SmartTodoApp.Application.TodoItems.Queries.GetTodoItems;
 
 /// <summary>
 /// Query to fetch todo items with optional status filter.
-/// Uses domain TodoStatus to maintain type safety and avoid casting.
-/// API controllers should map from contract TodoStatus to domain TodoStatus when creating this query.
-/// AutoMapper handles the reverse mapping from domain to contract in the response DTO.
+/// Accepts contract TodoStatus from API layer to keep controllers thin.
+/// Handler internally maps to domain TodoStatus for filtering.
 /// </summary>
-public record GetTodoItemsQuery(DomainTodoStatus? Status = null) : IRequest<List<TodoItemDto>>;
+public record GetTodoItemsQuery(TodoStatus? Status = null) : IRequest<List<TodoItemDto>>;
