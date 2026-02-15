@@ -76,7 +76,7 @@ public class TodoItemsController : ControllerBase
     /// <param name="id">The ID of the todo item to update</param>
     /// <param name="request">The update request</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>No content</returns>
+    /// <returns>Success status</returns>
     /// <response code="200">If the update was successful</response>
     /// <response code="400">If the request is invalid</response>
     /// <response code="404">If the todo item is not found</response>
@@ -105,7 +105,7 @@ public class TodoItemsController : ControllerBase
     /// </summary>
     /// <param name="id">The ID of the todo item to delete</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>No content</returns>
+    /// <returns>No content on successful deletion</returns>
     /// <response code="204">If the deletion was successful</response>
     /// <response code="404">If the todo item is not found</response>
     [HttpDelete("{id:guid}")]
@@ -126,7 +126,7 @@ public class TodoItemsController : ControllerBase
     /// </summary>
     /// <param name="id">The ID of the todo item to mark as complete</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>No content</returns>
+    /// <returns>Success status</returns>
     /// <response code="200">If the operation was successful</response>
     /// <response code="400">If the request is invalid</response>
     /// <response code="404">If the todo item is not found</response>
