@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using SmartTodoApp.Application.Common.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -10,7 +11,7 @@ namespace SmartTodoApp.Infrastructure.Security;
 /// Utility for generating JWT tokens for authentication.
 /// Used for development/testing purposes to generate valid Bearer tokens.
 /// </summary>
-public class TokenGenerator
+public class TokenGenerator : ITokenGenerator
 {
     private readonly string _key;
     private readonly string _issuer;
