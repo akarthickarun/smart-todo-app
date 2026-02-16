@@ -82,13 +82,13 @@ builder.Host.UseSerilog((context, loggerConfig) =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-// IMPORTANT: Middleware order matters
+// IMPORTANT: Middleware / endpoint order matters
 // 1. CorrelationId first (needs to be first)
 // 2. ExceptionHandling
 // 3. UseHttpsRedirection
 // 4. Authentication
 // 5. Authorization
-// 6. MapControllers
+// 6. MapControllers (endpoint routing)
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
