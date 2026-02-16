@@ -92,9 +92,11 @@ public class AuthController : ControllerBase
 
     /// <summary>
     /// Safely extracts username from email address
+    /// Returns the local part of the email (before @), or the full email if malformed
     /// </summary>
     private static string ExtractUserNameFromEmail(string email)
     {
+        // Email validation ensures '@' exists, but handle edge cases like '@example.com'
         var atIndex = email.IndexOf('@');
         return atIndex > 0 ? email.Substring(0, atIndex) : email;
     }
