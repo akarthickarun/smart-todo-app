@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartTodoApp.Infrastructure.Security;
 using SmartTodoApp.Shared.Contracts.Auth;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SmartTodoApp.API.Controllers;
 
@@ -39,34 +41,21 @@ public class AuthController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
     public ActionResult<LoginResponse> Login([FromBody] LoginRequest request)
     {
-        // Validate input
-        if (string.IsNullOrWhiteSpace(request.Email))
+        // Model validation is handled automatically by data annotations
+        if (!ModelState.IsValid)
         {
-            return BadRequest(new ProblemDetails
-            {
-                Status = StatusCodes.Status400BadRequest,
-                Title = "Invalid request",
-                Detail = "Email is required"
-            });
-        }
-
-        if (string.IsNullOrWhiteSpace(request.Password))
-        {
-            return BadRequest(new ProblemDetails
-            {
-                Status = StatusCodes.Status400BadRequest,
-                Title = "Invalid request",
-                Detail = "Password is required"
-            });
+            return BadRequest(ModelState);
         }
 
         // For development/testing purposes, accept any credentials
         // In production, this would validate against a user database
         _logger.LogInformation("Login attempt for user: {Email}", request.Email);
 
-        // Mock user data - in production this would come from database after validation
-        var userId = Guid.NewGuid().ToString();
-        var userName = request.Email.Split('@')[0]; // Simple name extraction
+        // Generate deterministic userId based on email for consistency across logins
+        var userId = GenerateDeterministicUserId(request.Email);
+        
+        // Extract username from email safely
+        var userName = ExtractUserNameFromEmail(request.Email);
 
         // Generate JWT token
         var token = _tokenGenerator.GenerateToken(userId, request.Email, userName);
@@ -84,5 +73,29 @@ public class AuthController : ControllerBase
             Email: request.Email,
             Name: userName
         ));
+    }
+
+    /// <summary>
+    /// Generates a deterministic GUID from an email address for consistent user identification
+    /// </summary>
+    private static string GenerateDeterministicUserId(string email)
+    {
+        using var sha256 = SHA256.Create();
+        var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(email.ToLowerInvariant()));
+        
+        // Take first 16 bytes to create a GUID
+        var guidBytes = new byte[16];
+        Array.Copy(hash, guidBytes, 16);
+        
+        return new Guid(guidBytes).ToString();
+    }
+
+    /// <summary>
+    /// Safely extracts username from email address
+    /// </summary>
+    private static string ExtractUserNameFromEmail(string email)
+    {
+        var atIndex = email.IndexOf('@');
+        return atIndex > 0 ? email.Substring(0, atIndex) : email;
     }
 }
