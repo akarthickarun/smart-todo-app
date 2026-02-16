@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartTodoApp.Application.Common.Interfaces;
 using SmartTodoApp.Infrastructure.Persistence;
+using SmartTodoApp.Infrastructure.Security;
 
 namespace SmartTodoApp.Infrastructure;
 
@@ -32,6 +33,13 @@ public static class DependencyInjection
         // Register ApplicationDbContext as IApplicationDbContext for dependency injection
         services.AddScoped<IApplicationDbContext>(provider =>
             provider.GetRequiredService<ApplicationDbContext>());
+
+        // Register TokenGenerator for JWT token generation
+        services.AddSingleton(provider =>
+        {
+            var config = provider.GetRequiredService<IConfiguration>();
+            return TokenGenerator.FromConfiguration(config);
+        });
 
         return services;
     }
