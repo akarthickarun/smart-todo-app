@@ -237,7 +237,7 @@ Create the API controller with all CRUD REST endpoints following REST convention
 ---
 
 ### #12 - Add JWT authentication and authorization
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#15](https://github.com/akarthickarun/smart-todo-app/issues/15)  
 **Dependencies:** #11, #3  
 **Estimated:** 1.5 days
@@ -246,14 +246,14 @@ Create the API controller with all CRUD REST endpoints following REST convention
 Configure JWT Bearer authentication and add authorization to endpoints.
 
 **Acceptance Criteria:**
-- [ ] Configure JWT in Program.cs with token validation parameters
-- [ ] Add appsettings.json values: Jwt:Key, Jwt:Issuer, Jwt:Audience, Jwt:ExpiryMinutes
-- [ ] Create a token generation service or helper for dev/testing
-- [ ] Add [Authorize] attributes to all command endpoints (POST, PUT, DELETE)
-- [ ] Query endpoints (GET) remain public for now
-- [ ] Test: unauthorized requests return 401
-- [ ] Test: authorized requests with valid token succeed
-- [ ] (Optional) Add authorization policy for advanced control
+- [x] Configure JWT in Program.cs with token validation parameters
+- [x] Add appsettings.json values: Jwt:Key, Jwt:Issuer, Jwt:Audience, Jwt:ExpiryMinutes
+- [x] Create a token generation service or helper for dev/testing
+- [x] Add [Authorize] attributes to all command endpoints (POST, PUT, DELETE)
+- [x] Query endpoints (GET) remain public for now
+- [x] Test: unauthorized requests return 401
+- [x] Test: authorized requests with valid token succeed
+- [x] (Optional) Add authorization policy for advanced control
 
 ---
 
@@ -585,7 +585,7 @@ Create CI workflows for automated testing and build verification.
 | 1. Backend Foundation | #2-3 | ✅ #2-3 Completed |
 | 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
 | 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
-| 4. API Layer | #11-12 | Not Started |
+| 4. API Layer | #11-12 | ✅ #11-12 Completed |
 | 5. Backend Testing | #13-14 | Not Started |
 | 6. Frontend Setup | #15-17 | Not Started |
 | 7. Frontend API & State | #18-19 | Not Started |
