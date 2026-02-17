@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SmartTodoApp.Application.Common.Interfaces;
 using SmartTodoApp.Infrastructure.Security;
 using SmartTodoApp.Shared.Contracts.Auth;
 using System.Security.Cryptography;
