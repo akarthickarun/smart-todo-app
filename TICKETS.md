@@ -595,7 +595,7 @@ Create CI workflows for automated testing and build verification.
 | 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
 | 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
 | 4. API Layer | #11-12 | ✅ #11-12 Completed |
-| 5. Backend Testing | #13-14 | ✅ #13 Completed, #14 Not Started |
+| 5. Backend Testing | #13-14 | ✅ #13 Completed; #14 Not Started |
 | 6. Frontend Setup | #15-17 | Not Started |
 | 7. Frontend API & State | #18-19 | Not Started |
 | 8. Frontend UI | #20-21 | Not Started |
