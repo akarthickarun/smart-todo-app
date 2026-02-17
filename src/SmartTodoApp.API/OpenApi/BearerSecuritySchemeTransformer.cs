@@ -26,7 +26,6 @@ public sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransforme
                 Type = SecuritySchemeType.Http,
                 Scheme = "bearer",
                 BearerFormat = "JWT",
-                In = ParameterLocation.Header,
                 Description = "JWT Authorization header using the Bearer scheme."
             };
 
