@@ -34,8 +34,8 @@ public static class DependencyInjection
         services.AddScoped<IApplicationDbContext>(provider =>
             provider.GetRequiredService<ApplicationDbContext>());
 
-        // Register TokenGenerator for JWT token generation
-        services.AddSingleton(provider =>
+        // Register TokenGenerator as a singleton service
+        services.AddSingleton<ITokenGenerator>(provider =>
         {
             var config = provider.GetRequiredService<IConfiguration>();
             return TokenGenerator.FromConfiguration(config);
