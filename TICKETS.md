@@ -266,7 +266,7 @@ Configure JWT Bearer authentication and add authorization to endpoints.
 ## Phase 5: Testing (Backend)
 
 ### Ticket #13 (GH #16) - Add xUnit unit tests for handlers and validators
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#16](https://github.com/akarthickarun/smart-todo-app/issues/16)  
 **Dependencies:** #9, #10  
 **Estimated:** 2 days
@@ -275,15 +275,18 @@ Configure JWT Bearer authentication and add authorization to endpoints.
 Write unit tests for all command/query handlers and validators covering success and failure paths.
 
 **Acceptance Criteria:**
-- [ ] CreateTodoItemCommandValidator tests: valid input, empty title, title too long, invalid duedate
-- [ ] CreateTodoItemCommandHandler tests: creates entity, persists, returns id, logs
-- [ ] UpdateTodoItemCommandValidator tests: similar to create
-- [ ] UpdateTodoItemCommandHandler tests: updates entity, persists, logs
-- [ ] GetTodoItemByIdQueryHandler tests: returns DTO, throws NotFoundException if not found
-- [ ] GetTodoItemsQueryHandler tests: returns list, applies status filter, orders correctly
-- [ ] Minimum 3-5 tests per handler/validator
-- [ ] Use Moq for DbContext mocking
-- [ ] Use FluentAssertions for assertions
+- [x] CreateTodoItemCommandValidator tests: valid input, empty title, title too long, invalid duedate
+- [x] CreateTodoItemCommandHandler tests: creates entity, persists, returns id, logs
+- [x] UpdateTodoItemCommandValidator tests: similar to create
+- [x] UpdateTodoItemCommandHandler tests: updates entity, persists, logs
+- [x] DeleteTodoItemCommandHandler tests: deletes entity, throws NotFoundException, logs
+- [x] MarkTodoItemCompleteCommandValidator tests: valid ID validation
+- [x] MarkTodoItemCompleteCommandHandler tests: marks complete, persists, logs
+- [x] GetTodoItemByIdQueryHandler tests: returns DTO, throws NotFoundException if not found
+- [x] GetTodoItemsQueryHandler tests: returns list, applies status filter, orders correctly
+- [x] Minimum 3-5 tests per handler/validator
+- [x] Use Moq for DbContext mocking
+- [x] Use FluentAssertions for assertions
 
 ---
 
@@ -592,7 +595,7 @@ Create CI workflows for automated testing and build verification.
 | 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
 | 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
 | 4. API Layer | #11-12 | ✅ #11-12 Completed |
-| 5. Backend Testing | #13-14 | Not Started |
+| 5. Backend Testing | #13-14 | ✅ #13 Completed, #14 Not Started |
 | 6. Frontend Setup | #15-17 | Not Started |
 | 7. Frontend API & State | #18-19 | Not Started |
 | 8. Frontend UI | #20-21 | Not Started |
