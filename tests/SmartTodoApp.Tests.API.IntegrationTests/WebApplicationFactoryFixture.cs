@@ -53,6 +53,24 @@ public class WebApplicationFactoryFixture : WebApplicationFactory<Program>
     }
 
     /// <summary>
+    /// Creates an authenticated HTTP client with the test auth header
+    /// </summary>
+    public HttpClient CreateAuthenticatedClient()
+    {
+        var client = CreateClient();
+        client.DefaultRequestHeaders.Add(TestAuthHandler.TestAuthHeader, "test-token");
+        return client;
+    }
+
+    /// <summary>
+    /// Creates an unauthenticated HTTP client without the test auth header
+    /// </summary>
+    public HttpClient CreateUnauthenticatedClient()
+    {
+        return CreateClient();
+    }
+
+    /// <summary>
     /// Resets the database to ensure test isolation.
     /// Should be called before each test to clear any data from previous tests.
     /// </summary>
@@ -72,6 +90,8 @@ public class WebApplicationFactoryFixture : WebApplicationFactory<Program>
 /// </summary>
 public class TestAuthHandler : Microsoft.AspNetCore.Authentication.AuthenticationHandler<AuthenticationSchemeOptions>
 {
+    public const string TestAuthHeader = "X-Test-Auth";
+
     public TestAuthHandler(
         Microsoft.Extensions.Options.IOptionsMonitor<AuthenticationSchemeOptions> options,
         Microsoft.Extensions.Logging.ILoggerFactory logger,
@@ -82,6 +102,12 @@ public class TestAuthHandler : Microsoft.AspNetCore.Authentication.Authenticatio
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
+        // Check if the test auth header is present
+        if (!Request.Headers.ContainsKey(TestAuthHeader))
+        {
+            return Task.FromResult(AuthenticateResult.Fail("Missing authentication header"));
+        }
+
         var claims = new[]
         {
             new Claim(ClaimTypes.Name, "TestUser"),

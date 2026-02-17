@@ -18,7 +18,7 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
     public TodoItemsControllerIntegrationTests(WebApplicationFactoryFixture factory)
     {
         _factory = factory;
-        _client = factory.CreateClient();
+        _client = factory.CreateAuthenticatedClient();
     }
 
     /// <summary>
@@ -430,6 +430,96 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
         problemDetails.ValueKind.Should().Be(System.Text.Json.JsonValueKind.Object);
         problemDetails.GetProperty("type").GetString().Should().Contain("rfc");
         problemDetails.GetProperty("status").GetInt32().Should().Be(400);
+    }
+
+    #endregion
+
+    #region Authorization Tests
+
+    [Fact]
+    public async Task CreateTodoItem_WithoutAuthentication_ShouldReturn401Unauthorized()
+    {
+        // Arrange
+        var unauthenticatedClient = _factory.CreateUnauthenticatedClient();
+        var request = new CreateTodoRequest("Test Todo", null, null);
+
+        // Act
+        var response = await unauthenticatedClient.PostAsJsonAsync("/api/todoitems", request);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task UpdateTodoItem_WithoutAuthentication_ShouldReturn401Unauthorized()
+    {
+        // Arrange
+        var unauthenticatedClient = _factory.CreateUnauthenticatedClient();
+        var todoId = Guid.NewGuid();
+        var request = new UpdateTodoRequest("Updated Title", null, null);
+
+        // Act
+        var response = await unauthenticatedClient.PutAsJsonAsync($"/api/todoitems/{todoId}", request);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task DeleteTodoItem_WithoutAuthentication_ShouldReturn401Unauthorized()
+    {
+        // Arrange
+        var unauthenticatedClient = _factory.CreateUnauthenticatedClient();
+        var todoId = Guid.NewGuid();
+
+        // Act
+        var response = await unauthenticatedClient.DeleteAsync($"/api/todoitems/{todoId}");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task MarkTodoItemComplete_WithoutAuthentication_ShouldReturn401Unauthorized()
+    {
+        // Arrange
+        var unauthenticatedClient = _factory.CreateUnauthenticatedClient();
+        var todoId = Guid.NewGuid();
+
+        // Act
+        var response = await unauthenticatedClient.PatchAsync($"/api/todoitems/{todoId}/complete", null);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task GetTodoItemById_WithoutAuthentication_ShouldReturn200Ok()
+    {
+        // Arrange - Create a todo with authenticated client first
+        var createRequest = new CreateTodoRequest("Public Todo", null, null);
+        var createResponse = await _client.PostAsJsonAsync("/api/todoitems", createRequest);
+        var todoId = await createResponse.Content.ReadFromJsonAsync<Guid>();
+
+        // Act - Access with unauthenticated client
+        var unauthenticatedClient = _factory.CreateUnauthenticatedClient();
+        var response = await unauthenticatedClient.GetAsync($"/api/todoitems/{todoId}");
+
+        // Assert - GET endpoint should be public
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task GetAllTodoItems_WithoutAuthentication_ShouldReturn200Ok()
+    {
+        // Arrange
+        var unauthenticatedClient = _factory.CreateUnauthenticatedClient();
+
+        // Act
+        var response = await unauthenticatedClient.GetAsync("/api/todoitems");
+
+        // Assert - GET all endpoint should be public
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     #endregion
