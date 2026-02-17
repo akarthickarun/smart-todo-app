@@ -2,11 +2,17 @@
 
 Comprehensive tracking document for all 25 implementation tickets. Each ticket is sequenced with clear dependencies and acceptance criteria. GitHub issues are linked below for collaborative tracking.
 
+**Ticket Numbering Convention:**
+- Tickets are numbered sequentially in this document (#1-#25)
+- GitHub Issues have separate numbering (starting from #1 but may have gaps due to other issues)
+- Each ticket heading shows both: `Ticket #X (GH #Y)` to avoid confusion
+- Example: Ticket #12 in this document corresponds to GitHub Issue #15
+
 ---
 
 ## Phase 0: Project Documentation
 
-### #1 - Add Copilot instructions and requirements docs
+### Ticket #1 (GH #1) - Add Copilot instructions and requirements docs
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#1](https://github.com/akarthickarun/smart-todo-app/issues/1)  
 **Dependencies:** None  
@@ -24,7 +30,7 @@ Establish baseline project documentation for Copilot guidance and requirements s
 
 ## Phase 1: Backend Foundation
 
-### #2 - Set up ASP.NET Core 10 projects and dependency injection
+### Ticket #2 (GH #5) - Set up ASP.NET Core 10 projects and dependency injection
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#5](https://github.com/akarthickarun/smart-todo-app/issues/5)  
 **Dependencies:** None  
@@ -44,7 +50,7 @@ Create the foundational project structure and configure dependency injection for
 
 ---
 
-### #3 - Implement base middleware and error handling
+### Ticket #3 (GH #6) - Implement base middleware and error handling
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#6](https://github.com/akarthickarun/smart-todo-app/issues/6)  
 **Dependencies:** #2  
@@ -65,7 +71,7 @@ Add core middleware for request correlation tracking, exception handling, and st
 
 ## Phase 2: Domain & Data Layer
 
-### #4 - Create Todo entity in Domain layer
+### Ticket #4 (GH #7) - Create Todo entity in Domain layer
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#7](https://github.com/akarthickarun/smart-todo-app/issues/7)  
 **Dependencies:** None  
@@ -85,7 +91,7 @@ Define the core Todo entity with all business logic and factory methods.
 
 ---
 
-### #5 - Create DTOs in Shared.Contracts
+### Ticket #5 (GH #8) - Create DTOs in Shared.Contracts
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#8](https://github.com/akarthickarun/smart-todo-app/issues/8)  
 **Dependencies:** #4  
@@ -104,7 +110,7 @@ Define data transfer objects for API contracts and frontend consumption.
 
 ---
 
-### #6 - Set up EF Core DbContext and configuration
+### Ticket #6 (GH #9) - Set up EF Core DbContext and configuration
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#9](https://github.com/akarthickarun/smart-todo-app/issues/9)  
 **Dependencies:** #4, #5  
@@ -125,7 +131,7 @@ Create EF Core DbContext and configure TodoItem entity with Fluent API.
 
 ---
 
-### #7 - Create and apply initial database migration
+### Ticket #7 (GH #10) - Create and apply initial database migration
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#10](https://github.com/akarthickarun/smart-todo-app/issues/10)  
 **Dependencies:** #6  
@@ -144,7 +150,7 @@ Generate and apply the first EF Core migration to create the TodoItems table.
 
 ---
 
-### #8 - Create AutoMapper MappingProfile
+### Ticket #8 (GH #11) - Create AutoMapper MappingProfile
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#11](https://github.com/akarthickarun/smart-todo-app/issues/11)  
 **Dependencies:** #4, #5, #6  
@@ -163,7 +169,7 @@ Configure AutoMapper for entity-to-DTO projections.
 
 ## Phase 3: Application Layer (CQRS)
 
-### #9 - Implement todo CRUD commands and handlers
+### Ticket #9 (GH #12) - Implement todo CRUD commands and handlers
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#12](https://github.com/akarthickarun/smart-todo-app/issues/12)  
 **Dependencies:** #4, #5, #8  
@@ -187,7 +193,7 @@ Implement CreateTodoItem, UpdateTodoItem, and DeleteTodoItem commands with handl
 
 ---
 
-### #10 - Implement todo CRUD queries and handlers
+### Ticket #10 (GH #13) - Implement todo CRUD queries and handlers
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#13](https://github.com/akarthickarun/smart-todo-app/issues/13)  
 **Dependencies:** #4, #5, #8  
@@ -210,7 +216,7 @@ Implement GetTodoItemById and GetTodoItems (list) queries with handlers.
 
 ## Phase 4: API Layer
 
-### #11 - Create TodoItemsController with REST endpoints
+### Ticket #11 (GH #14) - Create TodoItemsController with REST endpoints
 **Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#14](https://github.com/akarthickarun/smart-todo-app/issues/14)  
 **Dependencies:** #9, #10  
@@ -236,8 +242,8 @@ Create the API controller with all CRUD REST endpoints following REST convention
 
 ---
 
-### #12 - Add JWT authentication and authorization
-**Status:** Not Started  
+### Ticket #12 (GH #15) - Add JWT authentication and authorization
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#15](https://github.com/akarthickarun/smart-todo-app/issues/15)  
 **Dependencies:** #11, #3  
 **Estimated:** 1.5 days
@@ -246,20 +252,20 @@ Create the API controller with all CRUD REST endpoints following REST convention
 Configure JWT Bearer authentication and add authorization to endpoints.
 
 **Acceptance Criteria:**
-- [ ] Configure JWT in Program.cs with token validation parameters
-- [ ] Add appsettings.json values: Jwt:Key, Jwt:Issuer, Jwt:Audience, Jwt:ExpiryMinutes
-- [ ] Create a token generation service or helper for dev/testing
-- [ ] Add [Authorize] attributes to all command endpoints (POST, PUT, DELETE)
-- [ ] Query endpoints (GET) remain public for now
-- [ ] Test: unauthorized requests return 401
-- [ ] Test: authorized requests with valid token succeed
-- [ ] (Optional) Add authorization policy for advanced control
+- [x] Configure JWT in Program.cs with token validation parameters
+- [x] Add appsettings.json values: Jwt:Key, Jwt:Issuer, Jwt:Audience, Jwt:ExpiryMinutes
+- [x] Create a token generation service or helper for dev/testing
+- [x] Add [Authorize] attributes to all command endpoints (POST, PUT, DELETE)
+- [x] Query endpoints (GET) remain public for now
+- [x] Test: unauthorized requests return 401
+- [x] Test: authorized requests with valid token succeed
+- [x] (Optional) Add authorization policy for advanced control
 
 ---
 
 ## Phase 5: Testing (Backend)
 
-### #13 - Add xUnit unit tests for handlers and validators
+### Ticket #13 (GH #16) - Add xUnit unit tests for handlers and validators
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#16](https://github.com/akarthickarun/smart-todo-app/issues/16)  
 **Dependencies:** #9, #10  
@@ -281,7 +287,7 @@ Write unit tests for all command/query handlers and validators covering success 
 
 ---
 
-### #14 - Add integration tests for API endpoints
+### Ticket #14 (GH #17) - Add integration tests for API endpoints
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#17](https://github.com/akarthickarun/smart-todo-app/issues/17)  
 **Dependencies:** #11, #12, #13  
@@ -306,7 +312,7 @@ Write integration tests for all API endpoints using WebApplicationFactory.
 
 ## Phase 6: Frontend Foundation
 
-### #15 - Set up React + TypeScript + Vite + Tailwind
+### Ticket #15 (GH #18) - Set up React + TypeScript + Vite + Tailwind
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#18](https://github.com/akarthickarun/smart-todo-app/issues/18)  
 **Dependencies:** None  
@@ -326,7 +332,7 @@ Initialize frontend project with all dev dependencies and configuration.
 
 ---
 
-### #16 - Create layouts and routing
+### Ticket #16 (GH #19) - Create layouts and routing
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#19](https://github.com/akarthickarun/smart-todo-app/issues/19)  
 **Dependencies:** #15  
@@ -349,7 +355,7 @@ Set up React Router with main layout and core routes.
 
 ---
 
-### #17 - Create auth store and login page (mock)
+### Ticket #17 (GH #20) - Create auth store and login page (mock)
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#20](https://github.com/akarthickarun/smart-todo-app/issues/20)  
 **Dependencies:** #16  
@@ -372,7 +378,7 @@ Implement Zustand auth store and basic login page for development.
 
 ## Phase 7: Frontend API & State
 
-### #18 - Create axios instance and todo API client
+### Ticket #18 (GH #21) - Create axios instance and todo API client
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#21](https://github.com/akarthickarun/smart-todo-app/issues/21)  
 **Dependencies:** #5, #17  
@@ -396,7 +402,7 @@ Build axios client with interceptors and todo API methods with Zod validation.
 
 ---
 
-### #19 - Create TanStack Query hooks
+### Ticket #19 (GH #22) - Create TanStack Query hooks
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#22](https://github.com/akarthickarun/smart-todo-app/issues/22)  
 **Dependencies:** #18  
@@ -422,7 +428,7 @@ Implement custom hooks for querying and mutating todos with TanStack Query v5.
 
 ## Phase 8: Frontend UI
 
-### #20 - Create Todo components
+### Ticket #20 (GH #23) - Create Todo components
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#23](https://github.com/akarthickarun/smart-todo-app/issues/23)  
 **Dependencies:** #15, #19  
@@ -449,7 +455,7 @@ Build all reusable Todo components for list, create, edit, and delete operations
 
 ---
 
-### #21 - Create TodosPage and integrate state
+### Ticket #21 (GH #24) - Create TodosPage and integrate state
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#24](https://github.com/akarthickarun/smart-todo-app/issues/24)  
 **Dependencies:** #20, #19  
@@ -474,7 +480,7 @@ Implement main TodosPage combining all components and connecting to API state.
 
 ## Phase 9: Testing (Frontend)
 
-### #22 - Add frontend component tests
+### Ticket #22 (GH #25) - Add frontend component tests
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#25](https://github.com/akarthickarun/smart-todo-app/issues/25)  
 **Dependencies:** #20  
@@ -501,7 +507,7 @@ Write component tests for all Todo components using Vitest + React Testing Libra
 
 ---
 
-### #23 - Add frontend hook tests
+### Ticket #23 (GH #26) - Add frontend hook tests
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#26](https://github.com/akarthickarun/smart-todo-app/issues/26)  
 **Dependencies:** #19  
@@ -529,7 +535,7 @@ Test TanStack Query hooks with renderHook and mocked axios.
 
 ## Phase 10: Containerization & CI
 
-### #24 - Add Docker setup
+### Ticket #24 (GH #27) - Add Docker setup
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#27](https://github.com/akarthickarun/smart-todo-app/issues/27)  
 **Dependencies:** #11, #21  
@@ -554,7 +560,7 @@ Create Dockerfiles and docker-compose for full local development environment.
 
 ---
 
-### #25 - Set up GitHub Actions CI pipeline
+### Ticket #25 (GH #28) - Set up GitHub Actions CI pipeline
 **Status:** Not Started  
 **GitHub Issue:** [akarthickarun/smart-todo-app#28](https://github.com/akarthickarun/smart-todo-app/issues/28)  
 **Dependencies:** #13, #14, #22, #23  
@@ -585,7 +591,7 @@ Create CI workflows for automated testing and build verification.
 | 1. Backend Foundation | #2-3 | ✅ #2-3 Completed |
 | 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
 | 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
-| 4. API Layer | #11-12 | Not Started |
+| 4. API Layer | #11-12 | ✅ #11-12 Completed |
 | 5. Backend Testing | #13-14 | Not Started |
 | 6. Frontend Setup | #15-17 | Not Started |
 | 7. Frontend API & State | #18-19 | Not Started |

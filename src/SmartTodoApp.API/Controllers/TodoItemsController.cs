@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartTodoApp.Application.TodoItems.Commands.CreateTodoItem;
 using SmartTodoApp.Application.TodoItems.Commands.DeleteTodoItem;
@@ -32,9 +33,12 @@ public class TodoItemsController : ControllerBase
     /// <returns>The ID of the created todo item</returns>
     /// <response code="201">Returns the newly created item ID</response>
     /// <response code="400">If the request is invalid</response>
+    /// <response code="401">If the request is not authenticated</response>
     [HttpPost]
+    [Authorize]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<Guid>> Create(
         [FromBody] CreateTodoRequest request,
         CancellationToken cancellationToken)
@@ -79,10 +83,13 @@ public class TodoItemsController : ControllerBase
     /// <returns>Success status</returns>
     /// <response code="200">If the update was successful</response>
     /// <response code="400">If the request is invalid</response>
+    /// <response code="401">If the request is not authenticated</response>
     /// <response code="404">If the todo item is not found</response>
     [HttpPut("{id:guid}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         Guid id,
@@ -107,9 +114,12 @@ public class TodoItemsController : ControllerBase
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>No content on successful deletion</returns>
     /// <response code="204">If the deletion was successful</response>
+    /// <response code="401">If the request is not authenticated</response>
     /// <response code="404">If the todo item is not found</response>
     [HttpDelete("{id:guid}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(
         Guid id,
@@ -129,10 +139,13 @@ public class TodoItemsController : ControllerBase
     /// <returns>Success status</returns>
     /// <response code="200">If the operation was successful</response>
     /// <response code="400">If the request is invalid</response>
+    /// <response code="401">If the request is not authenticated</response>
     /// <response code="404">If the todo item is not found</response>
     [HttpPatch("{id:guid}/complete")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> MarkComplete(
         Guid id,
