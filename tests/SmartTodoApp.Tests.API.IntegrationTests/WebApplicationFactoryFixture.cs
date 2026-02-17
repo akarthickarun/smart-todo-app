@@ -26,7 +26,7 @@ public class WebApplicationFactoryFixture : WebApplicationFactory<Program>
 
         builder.ConfigureServices((context, services) =>
         {
-            // Register in-memory database for testing - use the same database name for all requests
+            // Register in-memory database for testing
             var databaseName = _databaseName;
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -68,6 +68,20 @@ public class WebApplicationFactoryFixture : WebApplicationFactory<Program>
     public HttpClient CreateUnauthenticatedClient()
     {
         return CreateClient();
+    }
+
+    /// <summary>
+    /// Resets the database to ensure test isolation.
+    /// Should be called before each test to clear any data from previous tests.
+    /// </summary>
+    public async Task ResetDatabaseAsync()
+    {
+        using var scope = Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        
+        // Delete and recreate the database to ensure a clean state
+        await context.Database.EnsureDeletedAsync();
+        await context.Database.EnsureCreatedAsync();
     }
 }
 

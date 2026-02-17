@@ -69,7 +69,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddApplication();
 
 // Register Infrastructure services (DbContext, etc.) - skip in Testing environment
-if (builder.Environment.EnvironmentName != "Testing")
+if (!builder.Environment.IsEnvironment("Testing"))
 {
     builder.Services.AddInfrastructure(builder.Configuration);
 }
