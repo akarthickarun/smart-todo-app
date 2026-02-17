@@ -8,8 +8,9 @@ namespace SmartTodoApp.Tests.API.IntegrationTests.Controllers;
 /// <summary>
 /// Integration tests for TodoItemsController API endpoints.
 /// Tests the full HTTP stack with in-memory database.
+/// Each test gets a fresh database to ensure test isolation.
 /// </summary>
-public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationFactoryFixture>
+public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationFactoryFixture>, IAsyncLifetime
 {
     private readonly HttpClient _client;
     private readonly WebApplicationFactoryFixture _factory;
@@ -18,6 +19,22 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
     {
         _factory = factory;
         _client = factory.CreateClient();
+    }
+
+    /// <summary>
+    /// Called before each test to reset the database and ensure test isolation
+    /// </summary>
+    public async Task InitializeAsync()
+    {
+        await _factory.ResetDatabaseAsync();
+    }
+
+    /// <summary>
+    /// Called after each test
+    /// </summary>
+    public Task DisposeAsync()
+    {
+        return Task.CompletedTask;
     }
 
     #region POST /api/todoitems Tests
@@ -197,11 +214,15 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
     {
         // Arrange - Create pending and completed todos
         var pendingTodo = new CreateTodoRequest("Pending Task", null, null);
-        var createResponse = await _client.PostAsJsonAsync("/api/todoitems", pendingTodo);
-        var todoId = await createResponse.Content.ReadFromJsonAsync<Guid>();
+        var completedTodo = new CreateTodoRequest("Completed Task", null, null);
+        
+        // Create both todos
+        await _client.PostAsJsonAsync("/api/todoitems", pendingTodo);
+        var createResponse = await _client.PostAsJsonAsync("/api/todoitems", completedTodo);
+        var todoIdToComplete = await createResponse.Content.ReadFromJsonAsync<Guid>();
 
         // Mark one as complete
-        await _client.PatchAsync($"/api/todoitems/{todoId}/complete", null);
+        await _client.PatchAsync($"/api/todoitems/{todoIdToComplete}/complete", null);
 
         // Act
         var response = await _client.GetAsync("/api/todoitems?status=Pending");
@@ -211,6 +232,7 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
 
         var todos = await response.Content.ReadFromJsonAsync<List<TodoItemDto>>();
         todos.Should().NotBeNull();
+        todos!.Should().NotBeEmpty();
         todos!.Should().AllSatisfy(t => t.Status.Should().Be(TodoStatus.Pending));
     }
 
