@@ -269,6 +269,35 @@ public class ExceptionHandlingMiddlewareTests
         root.GetProperty("title").GetString().Should().Be("One or more validation errors occurred.");
     }
 
+    [Fact]
+    public async Task InvokeAsync_InvalidOperationException_ShouldReturnBadRequestWithProblemDetails()
+    {
+        // Arrange
+        var invalidOperationException = new InvalidOperationException("Todo item is already complete");
+
+        using var host = await CreateTestHost(_ => throw invalidOperationException);
+        var client = host.GetTestClient();
+
+        // Act
+        var response = await client.GetAsync("/test");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        response.Content.Headers.ContentType?.MediaType.Should().Be("application/problem+json");
+
+        var content = await response.Content.ReadAsStringAsync();
+        var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(content, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        problemDetails.Should().NotBeNull();
+        problemDetails!.Status.Should().Be(400);
+        problemDetails.Title.Should().Be("Invalid operation.");
+        problemDetails.Type.Should().Be("https://tools.ietf.org/html/rfc7231#section-6.5.1");
+        problemDetails.Detail.Should().Be("Todo item is already complete");
+    }
+
     private static async Task<IHost> CreateTestHost(
         RequestDelegate requestHandler,
         bool isDevelopment = false)
