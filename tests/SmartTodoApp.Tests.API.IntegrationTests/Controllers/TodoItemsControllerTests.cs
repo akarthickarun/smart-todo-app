@@ -33,7 +33,8 @@ public class TodoItemsControllerUnitTests
     public async Task Create_ShouldReturnCreatedAtActionWithId()
     {
         // Arrange
-        var request = new CreateTodoRequest("Test Title", "Test Description", new DateOnly(2030, 1, 1));
+        var futureDueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(30));
+        var request = new CreateTodoRequest("Test Title", "Test Description", futureDueDate);
         var todoId = Guid.NewGuid();
         using var cts = new CancellationTokenSource();
         var token = cts.Token;
@@ -132,7 +133,8 @@ public class TodoItemsControllerUnitTests
         var todoId = Guid.NewGuid();
         using var cts = new CancellationTokenSource();
         var token = cts.Token;
-        var request = new UpdateTodoRequest("Updated Title", "Updated Description", new DateOnly(2031, 2, 2));
+        var futureDueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(60));
+        var request = new UpdateTodoRequest("Updated Title", "Updated Description", futureDueDate);
 
         _mediatorMock
             .Setup(m => m.Send(It.IsAny<UpdateTodoItemCommand>(), It.IsAny<CancellationToken>()))
