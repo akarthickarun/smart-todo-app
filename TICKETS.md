@@ -279,6 +279,9 @@ Write unit tests for all command/query handlers and validators covering success 
 - [x] CreateTodoItemCommandHandler tests: creates entity, persists, returns id, logs
 - [x] UpdateTodoItemCommandValidator tests: similar to create
 - [x] UpdateTodoItemCommandHandler tests: updates entity, persists, logs
+- [x] DeleteTodoItemCommandHandler tests: deletes entity, throws NotFoundException, logs
+- [x] MarkTodoItemCompleteCommandValidator tests: valid ID validation
+- [x] MarkTodoItemCompleteCommandHandler tests: marks complete, persists, logs
 - [x] GetTodoItemByIdQueryHandler tests: returns DTO, throws NotFoundException if not found
 - [x] GetTodoItemsQueryHandler tests: returns list, applies status filter, orders correctly
 - [x] Minimum 3-5 tests per handler/validator
