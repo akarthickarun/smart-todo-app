@@ -5,10 +5,29 @@ Base URL: https://localhost:7083/api
 ## Authentication
 
 ### 1. Login (POST) - Get JWT Token
-```bash
+
+**Option 1: PowerShell (Recommended)**
+```powershell
+$body = @{
+    email = "user@example.com"
+    password = "password"
+} | ConvertTo-Json
+
+curl.exe -k -X POST https://localhost:7083/api/auth/login `
+  -H "Content-Type: application/json" `
+  -d $body
+```
+
+**Option 2: Using @-syntax for file content**
+```powershell
 curl.exe -k -X POST https://localhost:7083/api/auth/login ^
   -H "Content-Type: application/json" ^
-  -d "{\"email\":\"user@example.com\",\"password\":\"password\"}"
+  -d @create-login.json
+```
+
+**Option 3: Inline with single quotes (PowerShell)**
+```powershell
+curl.exe -k -X POST https://localhost:7083/api/auth/login -H "Content-Type: application/json" -d '{"email":"user@example.com","password":"password"}'
 ```
 
 Response:
@@ -23,7 +42,7 @@ Response:
 }
 ```
 
-**Note:** For development/testing, any email and password combination will work. Save the token from the response to use in subsequent requests.
+**Note:** For development/testing, any email and password combination will work. Save the token from the response to use in subsequent requests. **Important:** Use lowercase `email` and `password` in the JSON request body.
 
 ## Todo Items
 
