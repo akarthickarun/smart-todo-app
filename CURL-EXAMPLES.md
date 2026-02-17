@@ -42,7 +42,7 @@ Response:
 }
 ```
 
-**Note:** For development/testing, any email and password combination will work. Save the token from the response to use in subsequent requests. **Important:** Use lowercase `email` and `password` in the JSON request body.
+**Security note:** In production, the `/api/auth/login` endpoint must validate the provided `email` and `password` against your user store and **must not** accept arbitrary credentials. If you enable a relaxed “accept any credentials” mode for local development, ensure it is strictly gated by environment configuration and never enabled in shared/test/production environments. Save the token from the response to use in subsequent requests. **Important:** Use lowercase `email` and `password` in the JSON request body.
 
 ## Todo Items
 
