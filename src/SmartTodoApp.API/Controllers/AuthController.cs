@@ -13,12 +13,12 @@ namespace SmartTodoApp.API.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly TokenGenerator _tokenGenerator;
+    private readonly ITokenGenerator _tokenGenerator;
     private readonly IConfiguration _configuration;
     private readonly ILogger<AuthController> _logger;
 
     public AuthController(
-        TokenGenerator tokenGenerator,
+        ITokenGenerator tokenGenerator,
         IConfiguration configuration,
         ILogger<AuthController> logger)
     {
