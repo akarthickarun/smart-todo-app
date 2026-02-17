@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTodoApp.Tests.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTodoApp.Tests.API.IntegrationTests", "tests\SmartTodoApp.Tests.API.IntegrationTests\SmartTodoApp.Tests.API.IntegrationTests.csproj", "{F125CAB8-581F-4BBB-AA60-A83B245B8FC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTodoApp.Tests.Infrastructure.UnitTests", "tests\SmartTodoApp.Tests.Infrastructure.UnitTests\SmartTodoApp.Tests.Infrastructure.UnitTests.csproj", "{5570AD78-9D99-478C-9660-41FCA07FA8BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,18 @@ Global
 		{F125CAB8-581F-4BBB-AA60-A83B245B8FC9}.Release|x64.Build.0 = Release|Any CPU
 		{F125CAB8-581F-4BBB-AA60-A83B245B8FC9}.Release|x86.ActiveCfg = Release|Any CPU
 		{F125CAB8-581F-4BBB-AA60-A83B245B8FC9}.Release|x86.Build.0 = Release|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Debug|x64.Build.0 = Debug|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Debug|x86.Build.0 = Debug|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Release|x64.ActiveCfg = Release|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Release|x64.Build.0 = Release|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Release|x86.ActiveCfg = Release|Any CPU
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,5 +141,6 @@ Global
 		{EA82F580-FB40-43A2-AF17-E7E150CEF531} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{0A95CA6E-7C9A-437E-84D6-5B12D4C1B9B9} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{F125CAB8-581F-4BBB-AA60-A83B245B8FC9} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{5570AD78-9D99-478C-9660-41FCA07FA8BD} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
