@@ -106,7 +106,7 @@ public class ExceptionHandlingMiddlewareTests
     public async Task InvokeAsync_GenericException_ShouldReturnInternalServerErrorWithProblemDetails()
     {
         // Arrange
-        var genericException = new InvalidOperationException("Something went wrong");
+        var genericException = new ApplicationException("Something went wrong");
 
         using var host = await CreateTestHost(_ => throw genericException, isDevelopment: false);
         var client = host.GetTestClient();
@@ -135,7 +135,7 @@ public class ExceptionHandlingMiddlewareTests
     public async Task InvokeAsync_GenericExceptionInDevelopment_ShouldReturnExceptionMessage()
     {
         // Arrange
-        var genericException = new InvalidOperationException("Detailed error message");
+        var genericException = new ApplicationException("Detailed error message");
 
         using var host = await CreateTestHost(_ => throw genericException, isDevelopment: true);
         var client = host.GetTestClient();
