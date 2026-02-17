@@ -26,10 +26,11 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
     public async Task CreateTodoItem_WithValidRequest_ShouldReturn201Created()
     {
         // Arrange
+        var futureDueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(30));
         var request = new CreateTodoRequest(
             "Test Todo Item",
             "This is a test description",
-            new DateOnly(2026, 12, 31)
+            futureDueDate
         );
 
         // Act
