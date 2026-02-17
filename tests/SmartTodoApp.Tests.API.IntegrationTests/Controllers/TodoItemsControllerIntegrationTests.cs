@@ -249,10 +249,11 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
         var todoId = await createResponse.Content.ReadFromJsonAsync<Guid>();
 
         // Act - Update it
+        var futureDueDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(60));
         var updateRequest = new UpdateTodoRequest(
             "Updated Title",
             "Updated Description",
-            new DateOnly(2026, 12, 25)
+            futureDueDate
         );
         var updateResponse = await _client.PutAsJsonAsync($"/api/todoitems/{todoId}", updateRequest);
 
@@ -264,7 +265,7 @@ public class TodoItemsControllerIntegrationTests : IClassFixture<WebApplicationF
         var updatedTodo = await getResponse.Content.ReadFromJsonAsync<TodoItemDto>();
         updatedTodo!.Title.Should().Be("Updated Title");
         updatedTodo.Description.Should().Be("Updated Description");
-        updatedTodo.DueDate.Should().Be(new DateOnly(2026, 12, 25));
+        updatedTodo.DueDate.Should().Be(futureDueDate);
     }
 
     [Fact]
