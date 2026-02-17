@@ -26,23 +26,37 @@ public sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransforme
                 Type = SecuritySchemeType.Http,
                 Scheme = "bearer",
                 BearerFormat = "JWT",
+                In = ParameterLocation.Header,
                 Description = "JWT Authorization header using the Bearer scheme."
             };
 
-            // Add it to components
+            // Ensure components are initialized
             document.Components ??= new OpenApiComponents();
-            document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
-            document.Components.SecuritySchemes["Bearer"] = bearerScheme;
 
-            // Reference the scheme in security requirements
-            var requirement = new OpenApiSecurityRequirement
+            // Add the scheme to the document components
+            document.AddComponent("Bearer", bearerScheme);
+
+            // Create a security requirement referencing the scheme
+            var securityRequirement = new OpenApiSecurityRequirement
             {
-                [new OpenApiSecuritySchemeReference("Bearer")] = new List<string>()
+                [new OpenApiSecuritySchemeReference("Bearer", document)] = []
             };
 
-            // Set security requirement at document level so it's global
-            document.Security ??= [];
-            document.Security.Add(requirement);
+            // Apply the requirement to all operations
+            if (document.Paths != null)
+            {
+                foreach (var path in document.Paths.Values)
+                {
+                    if (path?.Operations != null)
+                    {
+                        foreach (var operation in path.Operations.Values)
+                        {
+                            operation.Security ??= new List<OpenApiSecurityRequirement>();
+                            operation.Security.Add(securityRequirement);
+                        }
+                    }
+                }
+            }
         }
     }
 }
