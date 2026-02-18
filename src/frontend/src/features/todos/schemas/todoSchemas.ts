@@ -5,6 +5,7 @@ export const todoItemSchema = z.object({
   title: z.string(),
   description: z.string().nullable(),
   isComplete: z.boolean(),
+  dueDate: z.string().date().nullable(),
   createdAt: z.string().datetime(),
   completedAt: z.string().datetime().nullable(),
 })
@@ -18,6 +19,7 @@ export const createTodoSchema = z.object({
     .string()
     .max(1000, 'Description must not exceed 1000 characters')
     .optional(),
+  dueDate: z.string().date().optional(),
 })
 
 export const updateTodoSchema = z.object({
@@ -29,6 +31,7 @@ export const updateTodoSchema = z.object({
     .string()
     .max(1000, 'Description must not exceed 1000 characters')
     .optional(),
+  dueDate: z.string().date().optional(),
 })
 
 export type TodoItem = z.infer<typeof todoItemSchema>
