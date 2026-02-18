@@ -44,7 +44,15 @@ public class WebApplicationFactoryFixture : WebApplicationFactory<Program>
                 return TokenGenerator.FromConfiguration(config);
             });
 
-            // Replace authentication with test authentication that always succeeds
+            // Remove existing authentication services registered in Program.cs (JWT Bearer)
+            // This ensures a clean test authentication setup without conflicts
+            var authenticationServiceDescriptor = services.FirstOrDefault(d => d.ServiceType == typeof(IAuthenticationSchemeProvider));
+            if (authenticationServiceDescriptor != null)
+            {
+                services.Remove(authenticationServiceDescriptor);
+            }
+
+            // Register test authentication scheme that always succeeds for authenticated requests
             services.AddAuthentication(defaultScheme: "TestScheme")
                 .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("TestScheme", options => { });
 
