@@ -106,7 +106,7 @@ public class ExceptionHandlingMiddlewareTests
     public async Task InvokeAsync_GenericException_ShouldReturnInternalServerErrorWithProblemDetails()
     {
         // Arrange
-        var genericException = new InvalidOperationException("Something went wrong");
+        var genericException = new ApplicationException("Something went wrong");
 
         using var host = await CreateTestHost(_ => throw genericException, isDevelopment: false);
         var client = host.GetTestClient();
@@ -135,7 +135,7 @@ public class ExceptionHandlingMiddlewareTests
     public async Task InvokeAsync_GenericExceptionInDevelopment_ShouldReturnExceptionMessage()
     {
         // Arrange
-        var genericException = new InvalidOperationException("Detailed error message");
+        var genericException = new ApplicationException("Detailed error message");
 
         using var host = await CreateTestHost(_ => throw genericException, isDevelopment: true);
         var client = host.GetTestClient();
@@ -267,6 +267,35 @@ public class ExceptionHandlingMiddlewareTests
         
         root.GetProperty("status").GetInt32().Should().Be(400);
         root.GetProperty("title").GetString().Should().Be("One or more validation errors occurred.");
+    }
+
+    [Fact]
+    public async Task InvokeAsync_InvalidOperationException_ShouldReturnBadRequestWithProblemDetails()
+    {
+        // Arrange
+        var invalidOperationException = new InvalidOperationException("Todo item is already complete");
+
+        using var host = await CreateTestHost(_ => throw invalidOperationException);
+        var client = host.GetTestClient();
+
+        // Act
+        var response = await client.GetAsync("/test");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        response.Content.Headers.ContentType?.MediaType.Should().Be("application/problem+json");
+
+        var content = await response.Content.ReadAsStringAsync();
+        var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(content, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        problemDetails.Should().NotBeNull();
+        problemDetails!.Status.Should().Be(400);
+        problemDetails.Title.Should().Be("Invalid operation.");
+        problemDetails.Type.Should().Be("https://tools.ietf.org/html/rfc7231#section-6.5.1");
+        problemDetails.Detail.Should().Be("Todo item is already complete");
     }
 
     private static async Task<IHost> CreateTestHost(

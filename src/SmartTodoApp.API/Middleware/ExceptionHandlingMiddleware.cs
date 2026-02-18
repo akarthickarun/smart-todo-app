@@ -73,6 +73,17 @@ public class ExceptionHandlingMiddleware
                 };
                 break;
 
+            case InvalidOperationException invalidOperationException:
+                _logger.LogWarning(exception, "Invalid operation: {Message}", exception.Message);
+                problemDetails = new ProblemDetails
+                {
+                    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                    Title = "Invalid operation.",
+                    Detail = invalidOperationException.Message,
+                    Status = StatusCodes.Status400BadRequest,
+                };
+                break;
+
             default:
                 _logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
                 var environment = context.RequestServices.GetRequiredService<IHostEnvironment>();

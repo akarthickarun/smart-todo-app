@@ -291,7 +291,7 @@ Write unit tests for all command/query handlers and validators covering success 
 ---
 
 ### Ticket #14 (GH #17) - Add integration tests for API endpoints
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#17](https://github.com/akarthickarun/smart-todo-app/issues/17)  
 **Dependencies:** #11, #12, #13  
 **Estimated:** 2 days
@@ -300,16 +300,16 @@ Write unit tests for all command/query handlers and validators covering success 
 Write integration tests for all API endpoints using WebApplicationFactory.
 
 **Acceptance Criteria:**
-- [ ] Create WebApplicationFactory<Program> fixture
-- [ ] Test POST /api/todoitems: create todo, verify 201 and location header
-- [ ] Test GET /api/todoitems/{id}: retrieve todo, verify 200 and DTO
-- [ ] Test GET /api/todoitems/{id}: not found, verify 404
-- [ ] Test PUT /api/todoitems/{id}: update todo, verify 200
-- [ ] Test DELETE /api/todoitems/{id}: delete todo, verify 204
-- [ ] Test GET /api/todoitems?status=Completed: filter by status
-- [ ] Test unauthorized POST (no token): verify 401
-- [ ] Test invalid requests: verify 400 with Problem Details
-- [ ] All tests use in-memory database or fresh database per test
+- [x] Create WebApplicationFactory<Program> fixture
+- [x] Test POST /api/todoitems: create todo, verify 201 and location header
+- [x] Test GET /api/todoitems/{id}: retrieve todo, verify 200 and DTO
+- [x] Test GET /api/todoitems/{id}: not found, verify 404
+- [x] Test PUT /api/todoitems/{id}: update todo, verify 200
+- [x] Test DELETE /api/todoitems/{id}: delete todo, verify 204
+- [x] Test GET /api/todoitems?status=Completed: filter by status
+- [x] Test unauthorized POST (no token): verify 401
+- [x] Test invalid requests: verify 400 with Problem Details
+- [x] All tests use in-memory database with fresh database per test
 
 ---
 

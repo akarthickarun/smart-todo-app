@@ -68,8 +68,11 @@ builder.Services.AddAuthorization();
 // Register MediatR, FluentValidation, AutoMapper from Application layer
 builder.Services.AddApplication();
 
-// Register Infrastructure services (DbContext, etc.)
-builder.Services.AddInfrastructure(builder.Configuration);
+// Register Infrastructure services (DbContext, etc.) - skip in Testing environment
+if (!builder.Environment.IsEnvironment("Testing"))
+{
+    builder.Services.AddInfrastructure(builder.Configuration);
+}
 
 // Configure Serilog for structured logging
 builder.Host.UseSerilog((context, loggerConfig) =>
