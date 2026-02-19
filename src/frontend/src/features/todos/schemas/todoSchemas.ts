@@ -5,9 +5,10 @@ export const todoItemSchema = z.object({
   title: z.string(),
   description: z.string().nullable(),
   isComplete: z.boolean(),
-  dueDate: z.string().date().nullable(),
+  status: z.string(),
+  dueDate: z.string().datetime().nullable(),
   createdAt: z.string().datetime(),
-  completedAt: z.string().datetime().nullable(),
+  updatedAt: z.string().datetime(),
 })
 
 export const createTodoSchema = z.object({
