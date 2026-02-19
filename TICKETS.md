@@ -238,7 +238,7 @@ Create the API controller with all CRUD REST endpoints following REST convention
 - [x] All endpoints delegate to IMediator
 - [x] All endpoints use CancellationToken
 - [x] Unit tests for controller endpoints
-- [ ] Manual check with Postman/curl
+- [x] Manual check with Postman/curl
 
 ---
 
@@ -316,7 +316,7 @@ Write integration tests for all API endpoints using WebApplicationFactory.
 ## Phase 6: Frontend Foundation
 
 ### Ticket #15 (GH #18) - Set up React + TypeScript + Vite + Tailwind
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#18](https://github.com/akarthickarun/smart-todo-app/issues/18)  
 **Dependencies:** None  
 **Estimated:** 1 day
@@ -325,13 +325,13 @@ Write integration tests for all API endpoints using WebApplicationFactory.
 Initialize frontend project with all dev dependencies and configuration.
 
 **Acceptance Criteria:**
-- [ ] Create React 19 + TypeScript + Vite project structure
-- [ ] Install dependencies: react-router-dom, axios, @tanstack/react-query, zustand, zod, react-hook-form, shadcn/ui
-- [ ] Configure Tailwind CSS v4
-- [ ] Configure path aliases (@/ → src/)
-- [ ] Configure Vite with React plugin
-- [ ] Verify build succeeds with `npm run build`
-- [ ] Verify dev server starts with `npm run dev`
+- [x] Create React 19 + TypeScript + Vite project structure
+- [x] Install dependencies: react-router-dom, axios, @tanstack/react-query, zustand, zod, react-hook-form, shadcn/ui
+- [x] Configure Tailwind CSS v4
+- [x] Configure path aliases (@/ → src/)
+- [x] Configure Vite with React plugin
+- [x] Verify build succeeds with `npm run build`
+- [x] Verify dev server starts with `npm run dev`
 
 ---
 
@@ -595,8 +595,8 @@ Create CI workflows for automated testing and build verification.
 | 2. Domain & Data | #4-8 | ✅ #4-8 Completed |
 | 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
 | 4. API Layer | #11-12 | ✅ #11-12 Completed |
-| 5. Backend Testing | #13-14 | ✅ #13 Completed; #14 Not Started |
-| 6. Frontend Setup | #15-17 | Not Started |
+| 5. Backend Testing | #13-14 | ✅ #13-14 Completed |
+| 6. Frontend Setup | #15-17 | ✅ #15 Completed |
 | 7. Frontend API & State | #18-19 | Not Started |
 | 8. Frontend UI | #20-21 | Not Started |
 | 9. Frontend Testing | #22-23 | Not Started |
