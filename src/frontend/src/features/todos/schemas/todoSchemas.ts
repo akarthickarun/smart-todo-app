@@ -4,9 +4,8 @@ export const todoItemSchema = z.object({
   id: z.string().uuid(),
   title: z.string(),
   description: z.string().nullable(),
-  isComplete: z.boolean(),
   status: z.string(),
-  dueDate: z.string().datetime().nullable(),
+  dueDate: z.string().date().nullable(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 })

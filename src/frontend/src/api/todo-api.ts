@@ -7,8 +7,8 @@ import type {
 import { todoItemSchema } from '@/features/todos/schemas/todoSchemas'
 
 export const todoApi = {
-  getAll: async (isComplete?: boolean): Promise<TodoItem[]> => {
-    const params = isComplete !== undefined ? { isComplete } : {}
+  getAll: async (status?: number): Promise<TodoItem[]> => {
+    const params = status !== undefined ? { status } : {}
     const response = await apiClient.get('/todoitems', { params })
     const data = Array.isArray(response.data) ? response.data : [response.data]
     return data.map((item) => todoItemSchema.parse(item))
