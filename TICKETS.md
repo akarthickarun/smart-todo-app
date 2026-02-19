@@ -586,6 +586,25 @@ Create CI workflows for automated testing and build verification.
 
 ---
 
+## Phase 11: Maintenance
+
+### Ticket #26 (GH TBD) - Clean npm audit vulnerabilities
+**Status:** ✅ Completed  
+**GitHub Issue:** TBD  
+**Dependencies:** None  
+**Estimated:** 0.5 day
+
+**Description:**
+Document a production-only npm audit and keep dev-only audit warnings from ESLint dependencies.
+
+**Acceptance Criteria:**
+- [x] Add a frontend script for production-only audit
+- [x] Ensure npm audit --omit=dev reports 0 vulnerabilities
+- [x] Ensure npm run build succeeds
+- [x] Document audit usage in the frontend README
+
+---
+
 ## Summary
 
 | Phase | Tickets | Status |
@@ -601,6 +620,7 @@ Create CI workflows for automated testing and build verification.
 | 8. Frontend UI | #20-21 | Not Started |
 | 9. Frontend Testing | #22-23 | Not Started |
 | 10. DevOps & CI | #24-25 | Not Started |
+| 11. Maintenance | #26 | ✅ #26 Completed |
 
-**Total:** 25 tickets
+**Total:** 26 tickets
 **Estimated Duration:** ~14 days (concurrent phases possible)
