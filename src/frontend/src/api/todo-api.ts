@@ -5,13 +5,14 @@ import type {
   UpdateTodoInput,
 } from '@/features/todos/schemas/todoSchemas'
 import { todoItemSchema } from '@/features/todos/schemas/todoSchemas'
+import { z } from 'zod'
 
 export const todoApi = {
-  getAll: async (status?: number): Promise<TodoItem[]> => {
+  getAll: async (status?: string): Promise<TodoItem[]> => {
     const params = status !== undefined ? { status } : {}
     const response = await apiClient.get('/todoitems', { params })
-    const data = Array.isArray(response.data) ? response.data : [response.data]
-    return data.map((item) => todoItemSchema.parse(item))
+    const data = z.array(todoItemSchema).parse(response.data)
+    return data
   },
 
   getById: async (id: string): Promise<TodoItem> => {
