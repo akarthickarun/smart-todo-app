@@ -1,0 +1,93 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build-backend",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"SmartTodoApp.sln",
+				"--configuration",
+				"Release"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build-frontend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"src/frontend",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "frontend-install",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"src/frontend",
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "test-coverage",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"test",
+				"SmartTodoApp.sln",
+				"--configuration",
+				"Release",
+				"--collect:\"XPlat Code Coverage\""
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "test"
+		},
+		{
+			"label": "coverage-report-install",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"tool",
+				"install",
+				"-g",
+				"dotnet-reportgenerator-globaltool"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "coverage-report",
+			"type": "shell",
+			"command": "reportgenerator",
+			"args": [
+				"-reports:**/TestResults/**/coverage.cobertura.xml",
+				"-targetdir:coverage-report",
+				"-reporttypes:Html;Cobertura"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		}
+	]
+}
