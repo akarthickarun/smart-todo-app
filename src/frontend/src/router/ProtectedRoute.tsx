@@ -1,15 +1,18 @@
 import { Navigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
+import { authStore } from '@/features/auth/stores/authStore';
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  // TODO: Replace with actual auth store check in Ticket #17
-  const isAuthenticated = false;
+  const isAuthenticated = authStore((state) => state.isAuthenticated);
+  
+  // Development bypass: allows access without auth when flag is set
+  const bypassAuth = import.meta.env.VITE_BYPASS_AUTH === 'true';
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !bypassAuth) {
     return <Navigate to="/login" replace />;
   }
 
