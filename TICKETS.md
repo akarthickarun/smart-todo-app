@@ -605,6 +605,28 @@ Document a production-only npm audit and keep dev-only audit warnings from ESLin
 
 ---
 
+### Ticket #27 (GH TBD) - Add build tasks and code coverage reporting
+**Status:** ✅ Completed  
+**GitHub Issue:** TBD  
+**Dependencies:** None  
+**Estimated:** 0.5 day
+
+**Description:**
+Set up VS Code build tasks for both frontend and backend, and implement automated code coverage reporting with ReportGenerator.
+
+**Acceptance Criteria:**
+- [x] Create .vscode/tasks.json with build-backend task
+- [x] Create .vscode/tasks.json with build-frontend task
+- [x] Create .vscode/tasks.json with frontend-install task
+- [x] Create .vscode/tasks.json with test-coverage task (dotnet test with XPlat Code Coverage)
+- [x] Install dotnet-reportgenerator-globaltool globally
+- [x] Create .vscode/tasks.json with coverage-report task
+- [x] Generate HTML coverage report from Cobertura files
+- [x] Update .gitignore to exclude TestResults/, coverage-report/, and *.cobertura.xml
+- [x] Allow .vscode/tasks.json to be tracked in version control
+
+---
+
 ## Summary
 
 | Phase | Tickets | Status |
@@ -620,7 +642,7 @@ Document a production-only npm audit and keep dev-only audit warnings from ESLin
 | 8. Frontend UI | #20-21 | Not Started |
 | 9. Frontend Testing | #22-23 | Not Started |
 | 10. DevOps & CI | #24-25 | Not Started |
-| 11. Maintenance | #26 | ✅ #26 Completed |
+| 11. Maintenance | #26-27 | ✅ #26-27 Completed |
 
-**Total:** 26 tickets
+**Total:** 27 tickets
 **Estimated Duration:** ~14 days (concurrent phases possible)
