@@ -17,6 +17,8 @@ bld/
 # Visual Studio cache
 .vs/
 .vscode/
+# Allow tasks.json to be tracked
+!.vscode/tasks.json
 
 # Visual Studio Code
 *.code-workspace
@@ -59,6 +61,9 @@ lerna-debug.log*
 coverage/
 .coverage
 .nyc_output
+TestResults/
+coverage-report/
+*.cobertura.xml
 
 # Database
 *.mdf
