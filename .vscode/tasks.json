@@ -55,7 +55,7 @@
 				"SmartTodoApp.sln",
 				"--configuration",
 				"Release",
-				"--collect:\"XPlat Code Coverage\""
+				"--collect:XPlat Code Coverage"
 			],
 			"isBackground": false,
 			"problemMatcher": [
@@ -83,10 +83,20 @@
 			"args": [
 				"-reports:**/TestResults/**/coverage.cobertura.xml",
 				"-targetdir:coverage-report",
-				"-reporttypes:Html;Cobertura"
+				"-reporttypes:Html;Cobertura",
+				"-classfilters:-*Generated"
 			],
 			"isBackground": false,
 			"problemMatcher": [],
+			"options": {
+				"shell": {
+					"executable": "cmd.exe",
+					"args": [
+						"/d",
+						"/c"
+					]
+				}
+			},
 			"group": "test"
 		}
 	]
