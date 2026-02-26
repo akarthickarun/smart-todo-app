@@ -81,7 +81,7 @@
 			"type": "shell",
 			"command": "reportgenerator",
 			"args": [
-				"-reports:tests/**/coverage.cobertura.xml",
+				"-reports:**/TestResults/**/coverage.cobertura.xml",
 				"-targetdir:coverage-report",
 				"-reporttypes:Html;Cobertura"
 			],
