@@ -55,7 +55,7 @@
 				"SmartTodoApp.sln",
 				"--configuration",
 				"Release",
-				"--collect:XPlat Code Coverage"
+				"--collect:\"XPlat Code Coverage\""
 			],
 			"isBackground": false,
 			"problemMatcher": [
