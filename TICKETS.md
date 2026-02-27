@@ -368,14 +368,14 @@ Set up React Router with main layout and core routes.
 Implement Zustand auth store and basic login page for development.
 
 **Acceptance Criteria:**
-- [ ] Create src/features/auth/stores/authStore.ts with Zustand
-- [ ] Store holds: token, user (id, email, name), isAuthenticated
-- [ ] Implement login(token, user) and logout() actions
-- [ ] Use persist middleware to save to localStorage
-- [ ] Create LoginPage.tsx with mock email/password input
-- [ ] LoginPage calls authStore.login() with hardcoded token for local testing
-- [ ] ProtectedRoute now checks authStore.isAuthenticated
-- [ ] Logout clears token and redirects to /login
+- [x] Create src/features/auth/stores/authStore.ts with Zustand
+- [x] Store holds: token, user (id, email, name), isAuthenticated
+- [x] Implement login(token, user) and logout() actions
+- [x] Use persist middleware to save to localStorage
+- [x] Create LoginPage.tsx with mock email/password input
+- [x] LoginPage calls authStore.login() with hardcoded token for local testing
+- [x] ProtectedRoute now checks authStore.isAuthenticated
+- [x] Logout clears token and redirects to /login
 
 ---
 
