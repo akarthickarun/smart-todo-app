@@ -336,7 +336,7 @@ Initialize frontend project with all dev dependencies and configuration.
 ---
 
 ### Ticket #16 (GH #19) - Create layouts and routing
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#19](https://github.com/akarthickarun/smart-todo-app/issues/19)  
 **Dependencies:** #15  
 **Estimated:** 1 day
@@ -345,16 +345,16 @@ Initialize frontend project with all dev dependencies and configuration.
 Set up React Router with main layout and core routes.
 
 **Acceptance Criteria:**
-- [ ] Create src/router/index.tsx with createBrowserRouter
-- [ ] Create MainLayout.tsx with header, footer, Outlet for content
-- [ ] Create Header.tsx component (placeholder: title and nav)
-- [ ] Create Footer.tsx component (placeholder: copyright)
-- [ ] Define routes: / (protected), /login, * (not found)
-- [ ] Create ProtectedRoute wrapper component
-- [ ] Create NotFoundPage component
-- [ ] Create LoginPage component (stub)
-- [ ] Create TodosPage component (stub)
-- [ ] Router initialization in App.tsx
+- [x] Create src/router/index.tsx with createBrowserRouter
+- [x] Create MainLayout.tsx with header, footer, Outlet for content
+- [x] Create Header.tsx component (placeholder: title and nav)
+- [x] Create Footer.tsx component (placeholder: copyright)
+- [x] Define routes: / (protected), /login, * (not found)
+- [x] Create ProtectedRoute wrapper component
+- [x] Create NotFoundPage component
+- [x] Create LoginPage component (stub)
+- [x] Create TodosPage component (stub)
+- [x] Router initialization in App.tsx
 
 ---
 
