@@ -359,7 +359,7 @@ Set up React Router with main layout and core routes.
 ---
 
 ### Ticket #17 (GH #20) - Create auth store and login page (mock)
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#20](https://github.com/akarthickarun/smart-todo-app/issues/20)  
 **Dependencies:** #16  
 **Estimated:** 1 day
