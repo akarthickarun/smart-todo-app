@@ -382,7 +382,7 @@ Implement Zustand auth store and basic login page for development.
 ## Phase 7: Frontend API & State
 
 ### Ticket #18 (GH #21) - Create axios instance and todo API client
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#21](https://github.com/akarthickarun/smart-todo-app/issues/21)  
 **Dependencies:** #5, #17  
 **Estimated:** 1.5 days
@@ -391,13 +391,13 @@ Implement Zustand auth store and basic login page for development.
 Build axios client with interceptors and todo API methods with Zod validation.
 
 **Acceptance Criteria:**
-- [ ] Create src/api/axios-instance.ts with base URL from VITE_API_BASE_URL
-- [ ] Request interceptor adds Authorization header from authStore token
-- [ ] Request interceptor adds X-Correlation-ID header (random UUID)
-- [ ] Response interceptor handles 401 (clears auth, redirects to /login)
-- [ ] Response interceptor handles 403 (logs error)
-- [ ] Create src/api/todo-api.ts with methods: getAll, getById, create, update, delete
-- [ ] Create src/features/todos/schemas/todoSchemas.ts with Zod schemas
+- [x] Create src/api/axios-instance.ts with base URL from VITE_API_BASE_URL
+- [x] Request interceptor adds Authorization header from authStore token
+- [x] Request interceptor adds X-Correlation-ID header (random UUID)
+- [x] Response interceptor handles 401 (clears auth, redirects to /login)
+- [x] Response interceptor handles 403 (logs error)
+- [x] Create src/api/todo-api.ts with methods: getAll, getById, create, update, delete
+- [x] Create src/features/todos/schemas/todoSchemas.ts with Zod schemas
 - [ ] TodoItemDto schema matches backend
 - [ ] CreateTodoInput schema with validation rules
 - [ ] UpdateTodoInput schema with validation rules
@@ -637,8 +637,8 @@ Set up VS Code build tasks for both frontend and backend, and implement automate
 | 3. Application (CQRS) | #9-10 | ✅ #9-10 Completed |
 | 4. API Layer | #11-12 | ✅ #11-12 Completed |
 | 5. Backend Testing | #13-14 | ✅ #13-14 Completed |
-| 6. Frontend Setup | #15-17 | ✅ #15 Completed |
-| 7. Frontend API & State | #18-19 | Not Started |
+| 6. Frontend Setup | #15-17 | ✅ #15-17 Completed |
+| 7. Frontend API & State | #18-19 | ✅ #18 Completed, #19 Not Started |
 | 8. Frontend UI | #20-21 | Not Started |
 | 9. Frontend Testing | #22-23 | Not Started |
 | 10. DevOps & CI | #24-25 | Not Started |
