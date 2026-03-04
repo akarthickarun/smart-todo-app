@@ -42,8 +42,9 @@ export default function LoginPage() {
       >
         <h1 className="text-2xl font-bold mb-2">Login</h1>
         <div>
-          <label className="block mb-1 text-sm font-medium">Email</label>
+          <label htmlFor="email" className="block mb-1 text-sm font-medium">Email</label>
           <Input
+            id="email"
             type="email"
             value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -53,8 +54,9 @@ export default function LoginPage() {
           />
         </div>
         <div>
-          <label className="block mb-1 text-sm font-medium">Password</label>
+          <label htmlFor="password" className="block mb-1 text-sm font-medium">Password</label>
           <Input
+            id="password"
             type="password"
             value={password}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
