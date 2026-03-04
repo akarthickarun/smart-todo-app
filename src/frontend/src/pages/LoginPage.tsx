@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authStore } from '@/features/auth/stores/authStore';
 import { Button } from '@/components/ui/button';
@@ -9,12 +9,21 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const loginTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (loginTimeoutRef.current !== null) {
+        clearTimeout(loginTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     // Mock login: accept any email/password, set hardcoded token/user
-    setTimeout(() => {
+    loginTimeoutRef.current = setTimeout(() => {
       authStore.getState().login('mock-token', {
         id: 'user-1',
         email,
