@@ -432,7 +432,7 @@ Implement custom hooks for querying and mutating todos with TanStack Query v5.
 ## Phase 8: Frontend UI
 
 ### Ticket #20 (GH #23) - Create Todo components
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#23](https://github.com/akarthickarun/smart-todo-app/issues/23)  
 **Dependencies:** #15, #19  
 **Estimated:** 2 days
@@ -441,20 +441,20 @@ Implement custom hooks for querying and mutating todos with TanStack Query v5.
 Build all reusable Todo components for list, create, edit, and delete operations.
 
 **Acceptance Criteria:**
-- [ ] Create src/components/todos/TodoList.tsx (displays filtered list)
-- [ ] TodoList supports Status filter buttons (All, Pending, Completed)
-- [ ] Create src/components/todos/TodoItem.tsx (single todo card)
-- [ ] TodoItem displays title, description, status badge, duedate, action buttons
-- [ ] TodoItem has edit and delete buttons (with confirm dialog for delete)
-- [ ] Create src/components/todos/CreateTodoDialog.tsx (create form)
-- [ ] CreateTodoDialog uses React Hook Form + Zod validation
-- [ ] Form has Title, Description, DueDate inputs
-- [ ] Form submission creates todo via useCreateTodo hook
-- [ ] Create src/components/todos/UpdateTodoDialog.tsx (edit form)
-- [ ] UpdateTodoDialog pre-populates with existing todo data
-- [ ] All components use shadcn/ui: Dialog, Button, Card, Input, Textarea, Form
-- [ ] All components show loading/error states
-- [ ] All components are responsive
+- [x] Create src/components/todos/TodoList.tsx (displays filtered list)
+- [x] TodoList supports Status filter buttons (All, Pending, Completed)
+- [x] Create src/components/todos/TodoItem.tsx (single todo card)
+- [x] TodoItem displays title, description, status badge, duedate, action buttons
+- [x] TodoItem has edit and delete buttons (with confirm dialog for delete)
+- [x] Create src/components/todos/CreateTodoDialog.tsx (create form)
+- [x] CreateTodoDialog uses React Hook Form + Zod validation
+- [x] Form has Title, Description, DueDate inputs
+- [x] Form submission creates todo via useCreateTodo hook
+- [x] Create src/components/todos/UpdateTodoDialog.tsx (edit form)
+- [x] UpdateTodoDialog pre-populates with existing todo data
+- [x] All components use shadcn/ui: Dialog, Button, Card, Input, Textarea, Form
+- [x] All components show loading/error states
+- [x] All components are responsive
 
 ---
 
