@@ -406,7 +406,7 @@ Build axios client with interceptors and todo API methods with Zod validation.
 ---
 
 ### Ticket #19 (GH #22) - Create TanStack Query hooks
-**Status:** Not Started  
+**Status:** ✅ Completed  
 **GitHub Issue:** [akarthickarun/smart-todo-app#22](https://github.com/akarthickarun/smart-todo-app/issues/22)  
 **Dependencies:** #18  
 **Estimated:** 1.5 days
@@ -415,17 +415,17 @@ Build axios client with interceptors and todo API methods with Zod validation.
 Implement custom hooks for querying and mutating todos with TanStack Query v5.
 
 **Acceptance Criteria:**
-- [ ] Create src/lib/query-client.ts with QueryClient configuration
-- [ ] Configure defaults: retry, refetchOnWindowFocus, staleTime, gcTime
-- [ ] Create src/features/todos/hooks/useTodos.ts (query all todos, optional filter)
-- [ ] Create src/features/todos/hooks/useGetTodoById.ts (query single todo)
-- [ ] Create src/features/todos/hooks/useCreateTodo.ts (mutation)
-- [ ] Create src/features/todos/hooks/useUpdateTodo.ts (mutation)
-- [ ] Create src/features/todos/hooks/useDeleteTodo.ts (mutation)
-- [ ] All hooks use queryKey namespacing: ['todos'], ['todos', id]
-- [ ] Mutations invalidate relevant queries on success
-- [ ] Error handling provides user feedback via toast
-- [ ] Wrap App with QueryClientProvider in main.tsx
+- [x] Create src/lib/query-client.ts with QueryClient configuration
+- [x] Configure defaults: retry, refetchOnWindowFocus, staleTime, gcTime
+- [x] Create src/features/todos/hooks/useTodos.ts (query all todos, optional filter)
+- [x] Create src/features/todos/hooks/useGetTodoById.ts (query single todo)
+- [x] Create src/features/todos/hooks/useCreateTodo.ts (mutation)
+- [x] Create src/features/todos/hooks/useUpdateTodo.ts (mutation)
+- [x] Create src/features/todos/hooks/useDeleteTodo.ts (mutation)
+- [x] All hooks use queryKey namespacing: ['todos'], ['todos', id]
+- [x] Mutations invalidate relevant queries on success
+- [x] Error handling provides user feedback via toast (sonner)
+- [x] Wrap App with QueryClientProvider in main.tsx
 
 ---
 
@@ -638,7 +638,7 @@ Set up VS Code build tasks for both frontend and backend, and implement automate
 | 4. API Layer | #11-12 | ✅ #11-12 Completed |
 | 5. Backend Testing | #13-14 | ✅ #13-14 Completed |
 | 6. Frontend Setup | #15-17 | ✅ #15-17 Completed |
-| 7. Frontend API & State | #18-19 | ✅ #18 Completed, #19 Not Started |
+| 7. Frontend API & State | #18-19 | ✅ #18-19 Completed |
 | 8. Frontend UI | #20-21 | Not Started |
 | 9. Frontend Testing | #22-23 | Not Started |
 | 10. DevOps & CI | #24-25 | Not Started |
