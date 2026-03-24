@@ -1,10 +1,12 @@
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import { FormProvider, UseFormReturn } from "react-hook-form"
 
-export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {}
+export interface FormProps<TFieldValues = any> extends UseFormReturn<TFieldValues> {
+  children: React.ReactNode
+}
 
-export function Form({ className, ...props }: FormProps) {
-  return <form className={cn("space-y-6", className)} {...props} />
+export function Form<TFieldValues = any>({ children, ...form }: FormProps<TFieldValues>) {
+  return <FormProvider {...(form as UseFormReturn<TFieldValues>)}>{children}</FormProvider>
 }
 
 export function FormField({ children }: { children: React.ReactNode }) {
