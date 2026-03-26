@@ -17,8 +17,8 @@ export function CreateTodoDialog() {
     resolver: zodResolver(createTodoSchema),
     defaultValues: {
       title: '',
-      description: '',
-      dueDate: '',
+      description: null,
+      dueDate: null,
     },
   });
 
