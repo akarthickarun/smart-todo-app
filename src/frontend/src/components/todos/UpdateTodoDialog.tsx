@@ -34,7 +34,7 @@ export function UpdateTodoDialog({ open, onOpenChange, todo }: UpdateTodoDialogP
       form.reset({
         title: todo.title,
         description: todo.description ?? '',
-        dueDate: todo.dueDate ? todo.dueDate.split('T')[0] : '',
+        dueDate: todo.dueDate ?? '',
       });
     }
   }, [todo, form]);
