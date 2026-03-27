@@ -25,6 +25,9 @@ export function FormControl({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>
 }
 
-export function FormMessage({ children }: { children: React.ReactNode }) {
+export function FormMessage({ children }: { children?: React.ReactNode }) {
+  if (!children) {
+    return null
+  }
   return <p className="text-xs text-destructive mt-1">{children}</p>
 }
