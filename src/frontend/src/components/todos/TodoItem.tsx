@@ -32,14 +32,16 @@ export function TodoItem({ todo, onEdit, onDelete }: TodoItemProps) {
           </div>
         </div>
       </CardHeader>
-      {todo.description && (
+      {(todo.description || todo.dueDate) && (
         <CardContent>
-          <p className="text-sm text-muted-foreground">{todo.description}</p>
-        </CardContent>
-      )}
-      {todo.dueDate && (
-        <CardContent>
-          <span className="text-xs text-accent-foreground">Due: {new Date(todo.dueDate).toLocaleDateString()}</span>
+          {todo.description && (
+            <p className="text-sm text-muted-foreground">{todo.description}</p>
+          )}
+          {todo.dueDate && (
+            <span className="mt-2 block text-xs text-accent-foreground">
+              Due: {new Date(todo.dueDate).toLocaleDateString()}
+            </span>
+          )}
         </CardContent>
       )}
     </Card>
