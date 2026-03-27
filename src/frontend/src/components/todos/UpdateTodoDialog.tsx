@@ -23,8 +23,8 @@ export function UpdateTodoDialog({ open, onOpenChange, todo }: UpdateTodoDialogP
     resolver: zodResolver(updateTodoSchema),
     defaultValues: {
       title: '',
-      description: '',
-      dueDate: '',
+      description: null,
+      dueDate: null,
     },
   });
 
@@ -32,8 +32,8 @@ export function UpdateTodoDialog({ open, onOpenChange, todo }: UpdateTodoDialogP
     if (todo) {
       form.reset({
         title: todo.title,
-        description: todo.description ?? '',
-        dueDate: todo.dueDate ?? '',
+        description: todo.description ?? null,
+        dueDate: todo.dueDate ?? null,
       });
     }
   }, [todo, form]);

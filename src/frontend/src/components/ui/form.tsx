@@ -1,11 +1,12 @@
 import * as React from "react"
-import { FormProvider, UseFormReturn } from "react-hook-form"
+import { FormProvider } from "react-hook-form"
+import type { FieldValues, UseFormReturn } from "react-hook-form"
 
-export interface FormProps<TFieldValues = any> extends UseFormReturn<TFieldValues> {
+export interface FormProps<TFieldValues extends FieldValues = FieldValues> extends UseFormReturn<TFieldValues> {
   children: React.ReactNode
 }
 
-export function Form<TFieldValues = any>({ children, ...form }: FormProps<TFieldValues>) {
+export function Form<TFieldValues extends FieldValues = FieldValues>({ children, ...form }: FormProps<TFieldValues>) {
   return <FormProvider {...(form as UseFormReturn<TFieldValues>)}>{children}</FormProvider>
 }
 
