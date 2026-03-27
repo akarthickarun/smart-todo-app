@@ -1,104 +1,69 @@
 import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
 
+import { cn } from "@/lib/utils"
 
-export interface DialogProps {
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-  children: React.ReactNode
-}
+const Dialog = DialogPrimitive.Root
 
-type DialogContextValue = {
-  open: boolean
-  setOpen: (open: boolean) => void
-}
+const DialogTrigger = DialogPrimitive.Trigger
 
-const DialogContext = React.createContext<DialogContextValue | undefined>(undefined)
+const DialogPortal = DialogPrimitive.Portal
 
-export function Dialog({ open: openProp, onOpenChange, children }: DialogProps) {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false)
+const DialogOverlay = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      "fixed inset-0 z-50 bg-black/80",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out",
+      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+  />
+))
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
-  const isControlled = openProp !== undefined
-  const open = isControlled ? !!openProp : uncontrolledOpen
-
-  const setOpen = React.useCallback(
-    (nextOpen: boolean) => {
-      if (!isControlled) {
-        setUncontrolledOpen(nextOpen)
-      }
-      if (onOpenChange) {
-        onOpenChange(nextOpen)
-      }
-    },
-    [isControlled, onOpenChange]
-  )
-
-  const value = React.useMemo<DialogContextValue>(
-    () => ({ open, setOpen }),
-    [open, setOpen]
-  )
-
-  return <DialogContext.Provider value={value}>{children}</DialogContext.Provider>
-}
-
-export function DialogTrigger({ children }: { children: React.ReactNode }) {
-  const context = React.useContext(DialogContext)
-
-  // If used outside of a Dialog, render children as-is to avoid breaking existing usage.
-  if (!context) {
-    return <>{children}</>
-  }
-
-  const { setOpen } = context
-
-  // If child is not a valid React element, wrap it in a button that opens the dialog.
-  if (!React.isValidElement(children)) {
-    return (
-      <button type="button" onClick={() => setOpen(true)}>
-        {children}
-      </button>
-    )
-  }
-
-  const child = children as React.ReactElement<any>
-
-  const handleClick = (event: React.MouseEvent) => {
-    if (typeof child.props.onClick === "function") {
-      child.props.onClick(event)
-    }
-    if (!event.defaultPrevented) {
-      setOpen(true)
-    }
-  }
-
-  return React.cloneElement(child, {
-    ...child.props,
-    onClick: handleClick,
-  })
-}
-
-export function DialogContent({ children }: { children: React.ReactNode }) {
-  const context = React.useContext(DialogContext)
-
-  // If used outside of a Dialog, render nothing to avoid incorrect behavior.
-  if (!context) {
-    return null
-  }
-
-  if (!context.open) {
-    return null
-  }
-
-  return (
-    <div className="bg-background p-6 rounded-lg shadow-lg w-full max-w-md mx-auto mt-10">
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%]",
+        "gap-4 border bg-background p-6 shadow-lg duration-200",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out",
+        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+        "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
+        "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        "rounded-lg",
+        className
+      )}
+      {...props}
+    >
       {children}
-    </div>
+    </DialogPrimitive.Content>
+  </DialogPortal>
+))
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)} {...props} />
+}
+
+function DialogTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+  return (
+    <DialogPrimitive.Title
+      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      {...props}
+    />
   )
 }
 
-export function DialogHeader({ children }: { children: React.ReactNode }) {
-  return <div className="mb-4">{children}</div>
-}
-
-export function DialogTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-lg font-semibold mb-2">{children}</h2>
-}
+export { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle }
